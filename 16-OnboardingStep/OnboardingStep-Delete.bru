@@ -1,0 +1,19 @@
+meta {
+  name: OnboardingStep Delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/onboarding-steps/delete/{{onboardingStepId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Yozuvni o'chiradi. Topilmasa 404.
+}

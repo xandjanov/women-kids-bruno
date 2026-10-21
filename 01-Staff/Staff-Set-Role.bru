@@ -1,0 +1,27 @@
+meta {
+  name: Staff Set Role
+  type: http
+  seq: 10
+}
+
+patch {
+  url: {{baseUrl}}/api/admin/staffs/{{staffId}}/role
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "role": "admin"
+  }
+}
+
+docs {
+  Rolni o'zgartirish. superadmin | admin | redactor
+  O'z rolini o'zgartirishga ruxsat yo'q (403).
+}

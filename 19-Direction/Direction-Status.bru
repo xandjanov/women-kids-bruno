@@ -1,0 +1,27 @@
+meta {
+  name: Direction Status
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/directions/{{directionId}}/status
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "status": false
+  }
+}
+
+docs {
+  Global status funksiyasi. false yozuvni public ro'yxatdan yashiradi,
+  true qayta ko'rsatadi. `status` majburiy, yozuv topilmasa 404.
+}

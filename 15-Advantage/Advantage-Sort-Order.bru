@@ -1,0 +1,29 @@
+meta {
+  name: Advantage Sort Order
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/advantages/sort-order
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "sort_order": [{{advantageId}}]
+  }
+}
+
+docs {
+  Global yozuvlar tartiblash funksiyasi.
+  Bir nechta mavjud IDni kerakli tartibda yuboring, masalan [3, 1, 2].
+  Tanlanmagan yozuvlar o'z o'rnida qoladi. Bitta ID tartibni o'zgartirmaydi.
+  Takroriy ID 400, mavjud bo'lmagan ID 404 qaytaradi.
+}

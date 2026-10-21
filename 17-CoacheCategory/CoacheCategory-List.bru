@@ -1,0 +1,36 @@
+meta {
+  name: CoacheCategory List
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/coache-categories/list?page=1&limit=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 10
+}
+
+headers {
+  Accept-Language: oz
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+    bru.setEnvVar("coacheCategoryId", res.body.items[0].id);
+  }
+}
+
+docs {
+  Admin ro'yxati, `id ASC` tartibida (bu jadvalda `sort_order` yo'q).
+  limit: 1..100, standart 10.
+
+  Til `Accept-Language` bo'yicha — har element bitta `title` maydoni bilan qaytadi.
+  `status` va `created_at` ham bor.
+  Birinchi elementning `id`si `coacheCategoryId` env o'zgaruvchisiga yoziladi —
+  shu o'zgaruvchi `Coache Create` so'rovida ham ishlatiladi.
+}

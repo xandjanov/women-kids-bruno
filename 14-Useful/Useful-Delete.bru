@@ -1,0 +1,19 @@
+meta {
+  name: Useful Delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/usefuls/delete/{{usefulId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Yozuvni o'chiradi — yuklangan rasmlari ham diskdan o'chadi. Topilmasa 404.
+}

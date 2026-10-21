@@ -1,0 +1,62 @@
+meta {
+  name: Coache Create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/coaches/create
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+body:multipart-form {
+  group: women
+  ~group: kids
+  ~group: women_and_kids
+  coache_category_id: {{coacheCategoryId}}
+  title_oz: Dilnoza Karimova
+  title_ru: Дилноза Каримова
+  title_uz: Дилноза Каримова
+  title_en: Dilnoza Karimova
+  short_content_oz: 8 yillik tajribaga ega fitnes murabbiysi.
+  short_content_ru: Фитнес-тренер с 8-летним опытом.
+  short_content_uz: 8 йиллик тажрибага эга фитнес мураббийси.
+  short_content_en: Fitness coach with 8 years of experience.
+  sort_order: 0
+  status: true
+  ~files: @file(_samples/sample.png)
+  ~lang: oz
+}
+
+docs {
+  multipart/form-data — bu modelda `files` bor, shuning uchun create JSON EMAS.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `group` | string | **MAJBURIY** — women, kids yoki women_and_kids |
+  | `coache_category_id` | int | ixtiyoriy; 0 yoki yuborilmasa kategoriyasiz |
+  | `title_oz/ru/uz/en` | string | text, uzunlik cheklovi yo'q, ixtiyoriy |
+  | `short_content_oz/ru/uz/en` | string | text, ixtiyoriy |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+  | `files` | file | rasm (jpg/jpeg/png/webp), har biri max 5MB, 100 tagacha |
+  | `lang` | string | har bir faylga til (oz/ru/uz/en/all), FAYL SONI BILAN TENG |
+
+  `group` params ro'yxatida uchta qiymat tayyor turadi, faqat bittasi yoqilgan —
+  kerakligini belgilab, qolganini o'chirib qo'ying.
+
+  Xatolar:
+  - `group` yuborilmasa 400 (validation)
+  - `group` noto'g'ri bo'lsa 400 + ruxsat etilgan guruhlar bilan tarjimali xato
+  - `coache_category_id` mavjud bo'lmasa 400 + "kategoriya topilmadi"
+  - fayl turi yoki hajmi noto'g'ri bo'lsa 400
+
+  Birinchi yuklangan fayl avtomatik `is_main` bo'ladi.
+  Insert muvaffaqiyatsiz bo'lsa yuklangan fayllar diskdan o'chiriladi.
+  Kategoriya IDsini olish uchun avval `17 CoacheCategory / CoacheCategory List` ni yuboring.
+}

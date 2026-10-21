@@ -1,0 +1,27 @@
+meta {
+  name: Staff Set Status
+  type: http
+  seq: 11
+}
+
+patch {
+  url: {{baseUrl}}/api/admin/staffs/{{staffId}}/status
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "status": false
+  }
+}
+
+docs {
+  Bloklash / blokdan chiqarish. `status` majburiy.
+  `false` bo'lsa shu staff'ning hamma sessiyasi o'chadi va login 403 qaytaradi.
+}

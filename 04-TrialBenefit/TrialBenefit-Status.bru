@@ -1,0 +1,27 @@
+meta {
+  name: TrialBenefit Status
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/trial-benefits/{{trialBenefitId}}/status
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "status": false
+  }
+}
+
+docs {
+  Global status funksiyasi. false yozuvni public ro'yxatdan yashiradi,
+  true qayta ko'rsatadi. `status` majburiy, yozuv topilmasa 404.
+}

@@ -1,0 +1,61 @@
+meta {
+  name: Branch Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/branches/create
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+body:multipart-form {
+  title_oz: Chilonzor filiali
+  title_ru: Филиал Чиланзар
+  title_uz: Чилонзор филиали
+  title_en: Chilonzor branch
+  short_content_oz: Chilonzor tumanidagi asosiy filial
+  short_content_ru: Главный филиал в Чиланзарском районе
+  short_content_uz: Чилонзор туманидаги асосий филиал
+  short_content_en: Main branch in Chilonzor district
+  address_oz: Toshkent sh., Chilonzor 9-kvartal, 12-uy
+  address_ru: г. Ташкент, Чиланзар 9-квартал, дом 12
+  address_uz: Тошкент ш., Чилонзор 9-квартал, 12-уй
+  address_en: Tashkent, Chilonzor 9th block, house 12
+  hall_oz: 3 ta zal
+  hall_ru: 3 зала
+  hall_uz: 3 та зал
+  hall_en: 3 halls
+  link: https://maps.google.com/?q=41.2995,69.2401
+  sort_order: 0
+  status: true
+  ~files: @file(_samples/sample.png)
+  ~lang: oz
+}
+
+docs {
+  **multipart/form-data** — Branch'da `Files` bor, shuning uchun create JSON EMAS.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `title_oz/ru/uz/en` | matn | max 255 |
+  | `short_content_oz/ru/uz/en` | matn | cheklovsiz (text) |
+  | `address_oz/ru/uz/en` | matn | max 255 |
+  | `hall_oz/ru/uz/en` | matn | max 255 |
+  | `link` | matn | cheklovsiz (masalan xarita havolasi) |
+  | `sort_order` | int | standart 0 |
+  | `status` | bool | standart true |
+  | `files` | fayl | jpg/jpeg/png/webp, har biri max 5MB, 100 tagacha |
+  | `lang` | matn | har bir faylga til (oz\|ru\|uz\|en\|all) — FAYL SONI BILAN TENG bo'lishi shart |
+
+  Hamma matn maydoni ixtiyoriy. Fayl maydonlari `~` bilan o'chirilgan —
+  so'rov fayl bo'lmasa ham ishlaydi, yoqish uchun Bruno'da checkbox'ni belgilang.
+
+  Keyinchalik rasm qo'shish/o'chirish uchun `11-Media` papkasidan foydalaning
+  (`table` = `branches`).
+}

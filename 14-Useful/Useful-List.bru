@@ -1,0 +1,34 @@
+meta {
+  name: Useful List
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/usefuls/list?page=1&limit=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 10
+}
+
+headers {
+  Accept-Language: oz
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+    bru.setEnvVar("usefulId", res.body.items[0].id);
+  }
+}
+
+docs {
+  Admin ro'yxati, `sort_order ASC, id ASC` tartibida. limit: 1..100, standart 10.
+
+  `files` da faqat ASOSIY rasm (`is_main: true`) qaytadi — ro'yxat miniatyurasi uchun.
+  Hamma rasm kerak bo'lsa Detail so'rovidan oling.
+  Birinchi elementning `id`si `usefulId` env o'zgaruvchisiga yoziladi.
+}

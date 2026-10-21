@@ -1,0 +1,21 @@
+meta {
+  name: TrialOffer Detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/trial-offers/detail/{{trialOfferId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  ID bo'yicha bitta yozuv — admin uchun HAMMA til maydonlari bilan
+  (`title_oz`, `adults_ru`, `children_en`, ...).
+  Topilmasa 404, id raqam bo'lmasa 400.
+}

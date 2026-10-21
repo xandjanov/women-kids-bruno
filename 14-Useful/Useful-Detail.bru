@@ -1,0 +1,20 @@
+meta {
+  name: Useful Detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/usefuls/detail/{{usefulId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  ID bo'yicha bitta yozuv — HAMMA til maydonlari va HAMMA fayl bilan.
+  Topilmasa 404, id raqam bo'lmasa 400.
+}

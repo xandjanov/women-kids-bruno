@@ -1,0 +1,24 @@
+meta {
+  name: Advantage Public List
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/public/advantages/list
+  body: none
+  auth: none
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Ochiq (token kerak emas). Faqat `status: true` yozuvlar,
+  `sort_order ASC, id ASC` tartibida.
+
+  Til `Accept-Language` bilan: oz | ru | uz | en (standart oz) —
+  javobda `title` va `short_content` shu tilda qaytadi.
+  `icon`, `sort_order`, `status`, `created_at` ham qaytariladi.
+}

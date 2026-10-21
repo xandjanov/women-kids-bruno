@@ -1,0 +1,32 @@
+meta {
+  name: Direction Sort Order
+  type: http
+  seq: 9
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/directions/sort-order
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "sort_order": [{{directionId}}]
+  }
+}
+
+docs {
+  Global yozuvlar tartiblash funksiyasi.
+  Bir nechta mavjud IDni kerakli tartibda yuboring, masalan [3, 1, 2].
+  Tanlanmagan yozuvlar o'z o'rnida qoladi. Bitta ID tartibni o'zgartirmaydi.
+  Takroriy ID 400, mavjud bo'lmagan ID 404 qaytaradi.
+
+  DIQQAT: bu yozuvlar tartibi — `sort_order` kaliti bilan.
+  Fayllar tartibi boshqa endpoint va `order` kalitini oladi (`11-Media`).
+}

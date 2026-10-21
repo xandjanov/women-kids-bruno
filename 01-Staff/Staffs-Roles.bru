@@ -1,0 +1,20 @@
+meta {
+  name: Staffs Roles
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/admin/staffs/roles
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Mavjud rollar ro'yxati. Faqat superadmin.
+  Javob: { roles: ["superadmin", "admin", "redactor"] }
+}

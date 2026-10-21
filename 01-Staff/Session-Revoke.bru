@@ -1,0 +1,28 @@
+meta {
+  name: Session Revoke
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/api/auth/sessions/{{sessionId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Qurilmani chiqarib yuborish — Telegram'dagi "Terminate session" kabi.
+  
+  O'chirilgandan keyin o'sha qurilmaning tokeni darhol `401` qaytaradi va
+  u qayta ishlamaydi — qurilma **yangidan login qilishi** shart.
+  
+  `sessionId` ni Sessions List so'rovi avtomatik to'ldiradi; aniq qurilmani
+  chiqarish uchun ro'yxatdagi kerakli `id` ni qo'ying.
+  
+  Faqat o'z sessiyasini o'chira oladi — boshqa staff'ning ID'si berilsa 404.
+  O'z joriy sessiyasini ham o'chirish mumkin (logout bilan bir xil natija).
+}

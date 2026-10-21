@@ -1,0 +1,33 @@
+meta {
+  name: CoacheCategory Update
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/coache-categories/update/{{coacheCategoryId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "title_oz": "Yoga",
+    "title_ru": "Йога",
+    "title_uz": "Йога",
+    "title_en": "Yoga",
+    "status": true
+  }
+}
+
+docs {
+  Qisman yangilash: faqat yuborilgan maydonlar o'zgaradi.
+  `title_oz/ru/uz/en` maksimum 255 belgi.
+  Bo'sh satr maydonni tozalaydi, false ham saqlanadi.
+  Yozuv topilmasa tarjimali 404 qaytadi.
+}

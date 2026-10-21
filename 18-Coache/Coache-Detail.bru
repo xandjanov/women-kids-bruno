@@ -1,0 +1,21 @@
+meta {
+  name: Coache Detail
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/coaches/detail/{{coacheId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  ID bo'yicha bitta yozuv — admin uchun HAMMA til maydonlari va HAMMA fayl bilan.
+  `group`, `coache_category_id`, `sort_order`, `status` ham qaytadi.
+  Topilmasa 404, id raqam bo'lmasa 400.
+}

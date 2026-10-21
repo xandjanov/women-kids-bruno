@@ -1,0 +1,22 @@
+meta {
+  name: Feature Detail
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/features/detail/{{featureId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  ID bo'yicha bitta yozuv - admin uchun HAMMA til maydonlari bilan
+  (`title_oz`, `title_ru`, `title_uz`, `title_en`).
+
+  Topilmasa 404.
+}

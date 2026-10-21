@@ -1,0 +1,25 @@
+meta {
+  name: Pages Public List
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/public/pages/list?page=1&limit=10
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 1
+  limit: 10
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Ochiq (token kerak emas). Faqat status: true yozuvlar.
+  Til Accept-Language header bilan: oz | ru | uz | en (standart oz).
+}

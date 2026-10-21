@@ -1,0 +1,19 @@
+meta {
+  name: TrialOffer Delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/trial-offers/delete/{{trialOfferId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Yozuvni o'chiradi. Topilmasa 404.
+}

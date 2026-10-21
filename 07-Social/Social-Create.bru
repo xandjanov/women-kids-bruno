@@ -1,0 +1,54 @@
+meta {
+  name: Social Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/socials/create
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "title_oz": "Telegram",
+    "title_ru": "Telegram",
+    "title_uz": "Телеграм",
+    "title_en": "Telegram",
+    "short_content_oz": "Yangiliklar va mashg'ulot jadvali kanalda.",
+    "short_content_ru": "Новости и расписание занятий в канале.",
+    "short_content_uz": "Янгиликлар ва машғулот жадвали каналда.",
+    "short_content_en": "News and class schedule on the channel.",
+    "icon": "telegram",
+    "options": "footer",
+    "link": "https://t.me/example",
+    "sort_order": 0,
+    "status": true
+  }
+}
+
+docs {
+  Yangi ijtimoiy tarmoq yaratish. JSON body (fayl yuklamaydi, multipart EMAS),
+  admin yoki superadmin tokeni kerak.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `title_oz/ru/uz/en` | string | max 255, ixtiyoriy |
+  | `short_content_oz/ru/uz/en` | string | text, uzunlik cheklovi yo'q, ixtiyoriy |
+  | `icon` | string | max 255, ixtiyoriy |
+  | `options` | string | max 255, ixtiyoriy — erkin matn, server tekshirmaydi |
+  | `link` | string | max 500, ixtiyoriy |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+
+  Hamma maydon ixtiyoriy — `{}` ham 201 qaytaradi.
+  Yaratilgach `Social List` so'rovini yuboring — birinchi yozuvning IDsi
+  `socialId` env o'zgaruvchisiga yoziladi.
+  Xabarlar `Accept-Language` bo'yicha tarjima qilinadi.
+}

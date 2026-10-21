@@ -1,0 +1,23 @@
+meta {
+  name: Feedback Delete
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/api/feedback/delete/{{feedbackId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Murojaatni o'chiradi. Topilmasa 404.
+
+  **Ruxsat: FAQAT `superadmin`.**
+  `admin` roli bilan yuborilsa `403` qaytadi — list va detail esa `admin` uchun
+  ham ochiq. Bu yagona joy, bu yerda admin va superadmin huquqi farq qiladi.
+}

@@ -1,0 +1,39 @@
+meta {
+  name: Advantage Update
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/advantages/update/{{advantageId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "title_oz": "Malakali murabbiylar",
+    "title_ru": "Квалифицированные тренеры",
+    "title_uz": "Малакали мураббийлар",
+    "title_en": "Qualified trainers",
+    "short_content_oz": "Maqsadingizga mos mashg'ulot dasturi.",
+    "short_content_ru": "Программа тренировок под вашу цель.",
+    "short_content_uz": "Мақсадингизга мос машғулот дастури.",
+    "short_content_en": "A training program tailored to your goal.",
+    "icon": "medal",
+    "sort_order": 1,
+    "status": true
+  }
+}
+
+docs {
+  Qisman yangilash: faqat yuborilgan maydonlar o'zgaradi.
+  `title_*` va `short_content_*` text; `icon` maksimum 255 belgi.
+  Bo'sh satr maydonni tozalaydi, false va 0 ham saqlanadi.
+  Yozuv topilmasa tarjimali 404 qaytadi.
+}

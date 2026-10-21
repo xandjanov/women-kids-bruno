@@ -1,0 +1,19 @@
+meta {
+  name: Menu Delete
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/api/menu/delete/{{menuId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Farzand menyusi bor bo'lsa o'chirilmaydi - avval farzandlarini o'chiring.
+}

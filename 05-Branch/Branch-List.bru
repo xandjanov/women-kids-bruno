@@ -1,0 +1,37 @@
+meta {
+  name: Branch List
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/branches/list
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~page: 1
+  ~limit: 10
+}
+
+headers {
+  Accept-Language: oz
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+    bru.setEnvVar("branchId", res.body.items[0].id);
+  }
+}
+
+docs {
+  Admin ro'yxati, `sort_order ASC, id ASC` tartibida. limit: 1..100, standart 10.
+  
+  Til `Accept-Language` bo'yicha — har element bitta `title`, `short_content`,
+  `address`, `hall` maydoni bilan qaytadi.
+  
+  `files` da faqat ASOSIY rasm (`is_main: true`) qaytadi — ro'yxatdagi
+  miniatyura uchun. Hamma rasm kerak bo'lsa Detail so'rovidan oling.
+  Birinchi elementning `id`si `branchId` env o'zgaruvchisiga yoziladi.
+}

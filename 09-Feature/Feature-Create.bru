@@ -1,0 +1,51 @@
+meta {
+  name: Feature Create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/features/create
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "group": "header",
+    "title_oz": "Tezkor yetkazib berish",
+    "title_ru": "Быстрая доставка",
+    "title_uz": "Тезкор етказиб бериш",
+    "title_en": "Fast delivery",
+    "sort_order": 0,
+    "status": true
+  }
+}
+
+docs {
+  Yangi xususiyat yaratish. Social kabi JSON (fayl yuklamaydi, multipart EMAS).
+  
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `group` | string | **MAJBURIY** — faqat `header` yoki `footer` |
+  | `title_oz/ru/uz/en` | string | max 255, ixtiyoriy |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true |
+  
+  `group` bo'sh bo'lsa yoki `header`/`footer` dan boshqa qiymat yuborilsa `400`
+  qaytadi va xato matni `Accept-Language` bo'yicha tarjima bilan keladi:
+  
+  | Til | Xabar |
+  |---|---|
+  | oz | Guruh noto'g'ri tanlandi. Faqat: header, footer |
+  | ru | Группа выбрана неверно. Только: header, footer |
+  | uz | Гуруҳ нотўғри танланди. Фақат: header, footer |
+  | en | Invalid group. Allowed: header, footer |
+  
+  Katta-kichik harf muhim emas: `HEADER` ham `header` sifatida saqlanadi.
+}

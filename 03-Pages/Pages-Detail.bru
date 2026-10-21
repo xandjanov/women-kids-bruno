@@ -1,0 +1,15 @@
+meta {
+  name: Pages Detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/pages/detail/{{pageId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Feature Status
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/features/{{featureId}}/status
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "status": false
+  }
+}
+
+docs {
+  Global status funksiyasi. false yozuvni public ro'yxatdan yashiradi,
+  true qayta ko'rsatadi. `status` majburiy, yozuv topilmasa 404.
+}

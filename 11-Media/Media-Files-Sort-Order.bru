@@ -1,0 +1,29 @@
+meta {
+  name: Media Files Sort Order
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/{{table}}/{{recordId}}/files/sort-order
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "order": [2, 1, 3]
+  }
+}
+
+docs {
+  Yozuv ichidagi FAYLLARNI qayta tartiblash.
+
+  DIQQAT: bu yerda kalit `order` (massiv - fayl ID'lari yangi tartibda).
+  Yozuvlarni tartiblash uchun 12-Common dagi `sort_order` kalitli so'rov ishlatiladi.
+}

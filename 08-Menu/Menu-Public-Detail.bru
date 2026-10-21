@@ -1,0 +1,20 @@
+meta {
+  name: Menu Public Detail
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/public/menu/{{menuSlug}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Slug bo'yicha ochiq detal. E'tibor bering: yo'l `/public/menu/:slug` -
+  boshqa modullardagidek `/detail/:slug` EMAS.
+}

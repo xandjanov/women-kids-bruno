@@ -1,0 +1,38 @@
+meta {
+  name: Direction Public List
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/public/directions/list?group=women&week=5
+  body: none
+  auth: none
+}
+
+params:query {
+  group: women
+  ~group: kids
+  ~group: women_and_kids
+  week: 5
+  ~week: 5,6
+  ~week: 0
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Ochiq (token kerak emas). Faqat `status: true` yozuvlar,
+  `sort_order ASC, id ASC` tartibida — bu endpoint sahifalamaydi.
+
+  Filtrlar admin `list` bilan bir xil ishlaydi: `?group=`, `?week=`
+  (vergul bilan yoki takrorlangan parametr), ikkisi birga `VA` bog'lanadi.
+  Ikkala filtrni o'chirsangiz hamma aktiv yo'nalish qaytadi.
+
+  Til `Accept-Language` bilan: oz | ru | uz | en (standart oz) —
+  javobda `title`, `short_content`, `age` shu tilda qaytadi.
+  `group`, `week`, `sort_order`, `status`, `created_at` ham bor.
+  `files` da shu tilga tegishli va tili belgilanmagan rasmlar qaytariladi.
+}

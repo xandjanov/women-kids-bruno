@@ -1,0 +1,21 @@
+meta {
+  name: Social Delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/socials/delete/{{socialId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Yozuvni butunlay o'chiradi. Admin yoki superadmin tokeni yetarli
+  (faqat `10-Feedback` delete superadmin talab qiladi).
+  Yozuv topilmasa tarjimali 404.
+}

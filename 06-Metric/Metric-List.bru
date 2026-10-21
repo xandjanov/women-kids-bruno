@@ -1,0 +1,49 @@
+meta {
+  name: Metric List
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/metrics/list?page=1&limit=10&group=coaches
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 10
+  group: coaches
+  ~group: about_studio
+}
+
+headers {
+  Accept-Language: oz
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+    bru.setEnvVar("metricId", res.body.items[0].id);
+  }
+}
+
+docs {
+  Admin ro'yxati, `sort_order ASC, id ASC` tartibida. limit: 1..100, standart 10.
+
+  **`group` bilan filtrlash** — params ro'yxatida hamma guruh tayyor turadi,
+  faqat bittasi yoqilgan. Kerakligini belgilab, qolganini o'chirib qo'ying:
+
+  | So'rov | Natija |
+  |---|---|
+  | `?page=1&limit=10` | hamma guruh (group'ni butunlay o'chirsangiz) |
+  | `?group=coaches` | faqat murabbiylar ko'rsatkichlari |
+  | `?group=about_studio` | faqat studiya haqida ko'rsatkichlari |
+  | `?group=xxx` | `400` + tarjima qilingan xato |
+
+  `total` ham filtrga mos keladi — ya'ni `?group=coaches` bo'lsa `total` faqat
+  shu guruh yozuvlari sonini qaytaradi, sahifalash to'g'ri ishlaydi.
+
+  Til `Accept-Language` bo'yicha: har element bitta `title` maydoni bilan,
+  yonida `group` va `options` ham qaytadi.
+  Birinchi elementning `id`si `metricId` env o'zgaruvchisiga yoziladi.
+}

@@ -1,0 +1,23 @@
+meta {
+  name: TrialBenefit Public List
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/public/trial-benefits/list
+  body: none
+  auth: none
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Ochiq (token kerak emas). Faqat `status: true` yozuvlar,
+  `sort_order ASC, id ASC` tartibida.
+
+  Til `Accept-Language` bilan: oz | ru | uz | en (standart oz) —
+  javobda bitta `title` maydoni qaytadi.
+}

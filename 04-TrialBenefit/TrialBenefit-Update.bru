@@ -1,0 +1,35 @@
+meta {
+  name: TrialBenefit Update
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/trial-benefits/update/{{trialBenefitId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "title_oz": "Birinchi dars bepul (yangilangan)",
+    "title_ru": "Первое занятие бесплатно (обновлено)",
+    "title_uz": "Биринчи дарс бепул (янгиланган)",
+    "title_en": "First lesson free (updated)",
+    "options": "gift-2",
+    "sort_order": 1,
+    "status": true
+  }
+}
+
+docs {
+  Qisman yangilash — faqat yuborilgan maydonlar o'zgaradi.
+  Bo'sh satr (`""`) yuborilsa maydon tozalanadi.
+  `title_oz/ru/uz/en` text, 255 belgi cheklovi yo'q.
+  `options` maksimum 255 belgi. false va 0 ham saqlanadi.
+}

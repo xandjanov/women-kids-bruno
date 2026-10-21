@@ -1,0 +1,36 @@
+meta {
+  name: Coache Groups
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/coaches/groups
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Ruxsat etilgan guruhlar ro'yxati — kodni ochib ko'rmasdan bilish uchun.
+
+  Javob:
+
+  ```json
+  {
+    "groups": ["women", "kids", "women_and_kids"]
+  }
+  ```
+
+  | Guruh | Ma'nosi |
+  |---|---|
+  | `women` | faqat ayollar bilan ishlaydigan murabbiy |
+  | `kids` | faqat bolalar bilan ishlaydigan murabbiy |
+  | `women_and_kids` | ikkisini ham o'z ichiga oladi |
+
+  Shu qiymatlar `create`/`update` body'sida va `list`/`public list`
+  `?group=` filtrida ishlatiladi.
+}

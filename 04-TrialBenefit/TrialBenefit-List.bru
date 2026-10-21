@@ -1,0 +1,33 @@
+meta {
+  name: TrialBenefit List
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/trial-benefits/list?page=1&limit=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 10
+}
+
+headers {
+  Accept-Language: oz
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+    bru.setEnvVar("trialBenefitId", res.body.items[0].id);
+  }
+}
+
+docs {
+  Admin ro'yxati, `sort_order ASC, id ASC` tartibida. limit: 1..100, standart 10.
+
+  Til `Accept-Language` bo'yicha — har element bitta `title` maydoni bilan qaytadi.
+  Birinchi elementning `id`si `trialBenefitId` env o'zgaruvchisiga yoziladi.
+}

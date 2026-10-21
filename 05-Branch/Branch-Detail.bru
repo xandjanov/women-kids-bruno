@@ -1,0 +1,22 @@
+meta {
+  name: Branch Detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/branches/detail/{{branchId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  ID bo'yicha bitta filial — admin uchun HAMMA til maydonlari va HAMMA fayl bilan
+  (`title_oz`, `title_ru`, `address_oz`, `hall_oz`, ... va to'liq `files`).
+
+  Topilmasa 404, id raqam bo'lmasa 400.
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Menu Detail
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/menu/detail/{{menuId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}

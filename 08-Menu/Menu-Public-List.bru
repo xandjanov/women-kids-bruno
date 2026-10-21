@@ -1,0 +1,20 @@
+meta {
+  name: Menu Public List
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/public/menu/list
+  body: none
+  auth: none
+}
+
+headers {
+  Accept-Language: uz
+}
+
+docs {
+  Ochiq daraxt menyu (children bilan). Faqat status: true.
+  Til - Accept-Language (oz|ru|uz|en).
+}

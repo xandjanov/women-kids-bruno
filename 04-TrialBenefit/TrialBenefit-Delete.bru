@@ -1,0 +1,19 @@
+meta {
+  name: TrialBenefit Delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/trial-benefits/delete/{{trialBenefitId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Yozuvni o'chiradi. Topilmasa 404.
+}

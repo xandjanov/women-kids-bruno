@@ -1,0 +1,54 @@
+meta {
+  name: Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/staff/login
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+  X-Device-Id: {{deviceId}}
+  X-Device-Name: {{deviceName}}
+  X-Device-Platform: {{devicePlatform}}
+}
+
+body:json {
+  {
+    "username": "superadmin",
+    "password": "superadmin123123"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.token) {
+    bru.setEnvVar("token", res.body.token);
+    bru.setEnvVar("staffId", res.body.staff.id);
+  }
+}
+
+docs {
+  Tizimga kirish. Muvaffaqiyatli bo'lsa token avtomatik `token` env o'zgaruvchisiga saqlanadi.
+
+  Javob: { status, message, token, staff }
+
+  ## Qurilma header'lari (bir qurilma = bitta sessiya)
+
+  | Header | Nima | Majburiy |
+  |---|---|---|
+  | `X-Device-Id` | qurilmaning barqaror ID'si (UUID) | yo'q, lekin TAVSIYA |
+  | `X-Device-Name` | ro'yxatda ko'rinadigan nom: "iPhone 15 Pro" | yo'q |
+  | `X-Device-Platform` | `web` / `android` / `ios` | yo'q |
+
+  `X-Device-Id` bir xil bo'lsa, qayta login sessiyalar ro'yxatiga YANGI qator
+  qo'shmaydi — eski sessiya o'rniga yoziladi va eski token ishlamay qoladi.
+
+  Header yuborilmasa, qurilma `User-Agent` bo'yicha aniqlanadi (brauzer uchun
+  yetarli, lekin mobil app uchun `X-Device-Id` yuborish shart — IP yoki ilova
+  versiyasi o'zgarsa ham sessiya o'sha qurilmada qolishi uchun).
+}

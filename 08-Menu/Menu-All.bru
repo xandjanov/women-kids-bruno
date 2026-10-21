@@ -1,0 +1,24 @@
+meta {
+  name: Menu All
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/menu/all?page=1&limit=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 10
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Tekis (flat) ro'yxat - `cat_id` tanlash (select) uchun qulay.
+}

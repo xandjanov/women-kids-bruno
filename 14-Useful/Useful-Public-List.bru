@@ -1,0 +1,23 @@
+meta {
+  name: Useful Public List
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/public/usefuls/list
+  body: none
+  auth: none
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Ochiq (token kerak emas). Faqat `status: true` yozuvlar,
+  `sort_order ASC, id ASC` tartibida.
+
+  Til `Accept-Language` bilan — `title` bitta maydon.
+  `files` da shu tilga tegishli VA tili bo'sh (`all`) rasmlar qaytadi.
+}

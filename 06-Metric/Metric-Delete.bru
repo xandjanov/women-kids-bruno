@@ -1,0 +1,19 @@
+meta {
+  name: Metric Delete
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseUrl}}/api/metrics/delete/{{metricId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept-Language: oz
+}
+
+docs {
+  Yozuvni o'chiradi. Topilmasa 404.
+}
