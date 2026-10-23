@@ -1,0 +1,39 @@
+meta {
+  name: User Profile
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/user/profile
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{userToken}}
+  Accept-Language: oz
+}
+
+docs {
+  Kirgan foydalanuvchining o'z profili. **Bu so'rov `userToken` ni ishlatadi**,
+  kolleksiya darajasidagi staff tokenini EMAS — shuning uchun `Authorization`
+  header'i qo'lda yozilgan.
+
+  Avval `User Register Verify` yoki `User Login Verify` ni yuboring, ular
+  `userToken` ni to'ldiradi.
+
+  Javob:
+
+  ```json
+  { "id": 1, "full_name": "...", "phone": "998901234567", "img": null, "status": true, "created_at": "..." }
+  ```
+
+  | Xato | Sabab |
+  |---|---|
+  | `401` token yaroqsiz | token yo'q, muddati tugagan yoki logout qilingan |
+  | `401` bloklangan | `status: false` |
+
+  DIQQAT: staff tokeni bu endpointga kirmaydi, user tokeni ham `/api/*` admin
+  endpointlariga kirmaydi — ikki tizim bir-biridan to'liq ajratilgan.
+}

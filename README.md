@@ -45,6 +45,7 @@ Parolni almashtirish:
 | `17-CoacheCategory` | murabbiy kategoriyalari — 4 tilda sarlavha, CRUD/public/status (JSON, `sort_order` YO'Q) |
 | `18-Coache` | murabbiylar — `women` / `kids` / `women_and_kids` guruhlari, `?group=` filtri, rasm bilan (create multipart) |
 | `19-Direction` | yo'nalishlar — `group` + `week` (0..7, bir nechta kun) filtri, rasm bilan (create multipart) |
+| `20-User` | oddiy foydalanuvchilar — telefon + SMS kod bilan register/login, profil |
 
 Har bir modelning hamma so'rovi (admin ham, public ham) o'z papkasida.
 
@@ -229,6 +230,39 @@ tarjimali xato qaytaradi.
 Model `files` ham saqlaydi (create multipart, rasm 5MB gacha), `age_*`
 maydonlari esa to'rt tilda yosh chegarasini ko'rsatadi ("18+", "5-12").
 Migratsiya: `20261021120000_create_directions_table.go`.
+
+## User (oddiy foydalanuvchilar)
+
+`20-User` — sayt foydalanuvchilari. Bu **staff'dan butunlay alohida tizim**:
+o'z jadvali (`users`), o'z sessiyalari (`user_sessions`) va o'z tokeni bor.
+Staff tokeni user endpointlariga kirmaydi, user tokeni admin endpointlariga
+kirmaydi — ikkisi ham `401` qaytaradi.
+
+Parol yo'q. Kirish ham, ro'yxatdan o'tish ham **4 xonali SMS kod** bilan:
+
+| Qadam | So'rov | Natija |
+|---|---|---|
+| 1 | `User Register` (`full_name` + `phone`) | telefonga kod ketadi, foydalanuvchi hali yaratilmaydi |
+| 2 | `User Register Verify` (`phone` + `code`) | foydalanuvchi yaratiladi va token beriladi (`201`) |
+| 1 | `User Login` (`full_name` + `phone`) | juftlik tekshiriladi, kod ketadi |
+| 2 | `User Login Verify` (`phone` + `code`) | token beriladi (`200`) |
+| — | `User Profile` | `{{userToken}}` bilan o'z profili |
+| — | `User Logout` | shu qurilmadagi sessiya o'chadi |
+
+**SMS provayder hali ulanmagan.** Shuning uchun kod doim `1234` va `register`/`login`
+javobida `code` maydoni bo'lib qaytadi — `Register`/`Login` so'rovlarining script'i
+uni `userCode` ga yozib qo'yadi, ya'ni `Verify` so'rovini hech narsa kiritmasdan
+yuborish mumkin. Eskiz ulangach kod tasodifiy bo'ladi va javobdan yo'qoladi;
+so'rovlar va maydonlar o'zgarmaydi.
+
+Kod qoidalari: 2 daqiqa yashaydi, 5 marta xato kiritilsa o'ladi, yangi kod
+so'rash uchun 60 sekund kutish kerak (`429`).
+
+Telefon formati erkin — `+998 90 123 45 67`, `901234567`, `998-90-123-45-67`
+hammasi `998901234567` ga keltiriladi.
+
+`User Profile` va `User Logout` kolleksiya darajasidagi staff tokenini emas,
+`{{userToken}}` ni ishlatadi — ularda `Authorization` header'i qo'lda yozilgan.
 
 ## Fayl yuklash va `_samples/`
 

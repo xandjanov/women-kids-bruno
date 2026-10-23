@@ -1,0 +1,46 @@
+meta {
+  name: User Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/user/login
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "full_name": "{{userFullName}}",
+    "phone": "{{userPhone}}"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.code) {
+    bru.setEnvVar("userCode", res.body.code);
+  }
+}
+
+docs {
+  Kirishning 1-qadami: `full_name` va `phone` JUFTLIGI bo'yicha foydalanuvchi
+  qidiriladi, topilsa o'sha telefonga yangi 4 xonali kod ketadi.
+
+  Ikkala maydon ham majburiy — faqat telefon yoki faqat ism bilan kirilmaydi.
+  Ism katta-kichik harfga sezgir emas, telefon formati erkin.
+
+  | Xato | Sabab |
+  |---|---|
+  | `404` foydalanuvchi topilmadi | ism va telefon juftligi mos kelmadi |
+  | `403` bloklangan | `status: false` qilib qo'yilgan |
+  | `400` telefon formati noto'g'ri | |
+  | `429` 60 sekund o'tmagan | kodni qayta so'rashdan oldin kuting |
+
+  Dev rejimda javobdagi `code` `userCode` ga yoziladi.
+}

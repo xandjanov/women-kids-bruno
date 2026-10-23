@@ -1,0 +1,23 @@
+meta {
+  name: User Logout
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/user/logout
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{userToken}}
+  Accept-Language: oz
+}
+
+docs {
+  Shu qurilmadagi sessiyani o'chiradi — token darhol ishlamay qoladi.
+  Tekshirish uchun keyin `User Profile` ni yuboring: `401` qaytishi kerak.
+
+  Boshqa qurilmalardagi sessiyalar saqlanib qoladi.
+}

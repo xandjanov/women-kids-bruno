@@ -1,0 +1,68 @@
+meta {
+  name: User Register
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/user/register
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept-Language: oz
+}
+
+body:json {
+  {
+    "full_name": "{{userFullName}}",
+    "phone": "{{userPhone}}"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 200 && res.body && res.body.code) {
+    bru.setEnvVar("userCode", res.body.code);
+  }
+}
+
+docs {
+  Ro'yxatdan o'tishning 1-qadami: ism va telefon yuboriladi, telefonga 4 xonali
+  tasdiqlash kodi ketadi. Foydalanuvchi hali YARATILMAYDI — u faqat kod
+  tasdiqlangandan keyin paydo bo'ladi.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `full_name` | string | majburiy, 2..255, unikal (katta-kichik harf farqsiz) |
+  | `phone` | string | majburiy, O'zbekiston raqami |
+
+  **Telefon formati erkin** — server o'zi tozalaydi va `998XXXXXXXXX` ko'rinishiga
+  keltiradi: `+998 90 123 45 67`, `901234567`, `998-90-123-45-67` — hammasi bir xil.
+
+  Javob:
+
+  ```json
+  {
+    "status": 200,
+    "message": "Tasdiqlash kodi yuborildi",
+    "phone": "998901234567",
+    "expires_in": 120,
+    "code": "1234"
+  }
+  ```
+
+  **`code` maydoni faqat dev rejimda qaytadi** (SMS provayder hali ulanmagan).
+  Eskiz ulangach u javobdan yo'qoladi va kod faqat SMS orqali keladi.
+  Shu so'rovning script'i kodni `userCode` env o'zgaruvchisiga yozadi, shuning
+  uchun keyingi `User Register Verify` so'rovi hech narsa kiritmasdan ishlaydi.
+
+  Xatolar:
+  - `400` telefon formati noto'g'ri
+  - `400` telefon allaqachon ro'yxatdan o'tgan
+  - `400` bu ism band
+  - `429` oxirgi koddan 60 sekund o'tmagan (spamdan himoya)
+
+  Kodni qayta yuborish uchun shu so'rovni 60 sekunddan keyin qaytadan yuboring.
+}
