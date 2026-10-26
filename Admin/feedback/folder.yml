@@ -1,0 +1,28 @@
+info:
+  name: feedback
+  type: folder
+  seq: 19
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Feedback — murojaatlar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/feedback` |
+    | **Rol** | `admin`, `superadmin` |
+
+    Ochiq murojaat `Public / feedback / create` orqali keladi.
+    Bu yerda faqat ko'rish va o'chirish (`delete` — **superadmin**).
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/feedback/list` |
+    | `get by id` | GET | `/feedback/detail/{{feedback_id}}` |
+    | `delete` | DELETE | `/feedback/delete/{{feedback_id}}` |
+  type: text/markdown

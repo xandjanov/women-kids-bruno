@@ -1,0 +1,63 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/usefuls/create"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: multipart-form
+    data:
+      - name: title_oz
+        type: text
+        value: "Davlat portali"
+      - name: title_ru
+        type: text
+        value: "Государственный портал"
+      - name: title_uz
+        type: text
+        value: "Давлат портали"
+      - name: title_en
+        type: text
+        value: "Government portal"
+      - name: sort_order
+        type: text
+        value: "0"
+      - name: status
+        type: text
+        value: "true"
+      - name: files
+        type: file
+        value: []
+        disabled: true
+      - name: lang
+        type: text
+        value: "oz"
+        disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  **multipart/form-data** — Useful'da `Files` bor, shuning uchun create JSON EMAS.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `title_oz/ru/uz/en` | matn | max 255, ixtiyoriy |
+  | `sort_order` | int | standart 0 |
+  | `status` | bool | standart true |
+  | `files` | fayl | jpg/jpeg/png/webp max 5MB, **svg max 2MB**, 100 tagacha |
+  | `lang` | matn | har bir faylga til (oz\|ru\|uz\|en\|all) — FAYL SONI BILAN TENG |
+
+  Logotip uchun `svg` ham ruxsat etilgan (boshqa modullarda yo'q).
+
+  Keyinchalik rasm qo'shish uchun `11-Media` papkasi (`table` = `usefuls`).

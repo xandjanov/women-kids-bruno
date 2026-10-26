@@ -1,0 +1,58 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/user/family-members/create"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "full_name": "Sevinch Karimova",
+        "birth_date": "2018-05-14",
+        "relationship": "child"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 201 && res.body && res.body.id) {
+          bru.setEnvVar("family_member_id", res.body.id);
+        }
+
+docs: |-
+  Foydalanuvchi o'z profiliga farzandini (yoki boshqa oila a'zosini) qo'shadi.
+  **`userToken` bilan ishlaydi**, staff tokeni bilan emas.
+
+  | Maydon | Cheklov |
+  |---|---|
+  | `full_name` | **majburiy**, max 255 |
+  | `birth_date` | ixtiyoriy, `YYYY-MM-DD`, kelajak sana bo'lmasin |
+  | `relationship` | ixtiyoriy — `child` (standart), `spouse`, `parent`, `other` |
+
+  `user_id` body'dan OLINMAYDI — u tokendan aniqlanadi, shuning uchun
+  birovning profiliga a'zo qo'shib bo'lmaydi.
+
+  Javobda `id` qaytadi va u `familyMemberId` env o'zgaruvchisiga yoziladi —
+  `Assign Membership` so'rovi shuni ishlatadi.
+
+  | Xato | Sabab |
+  |---|---|
+  | `400` `birth_date_invalid` | format `YYYY-MM-DD` emas yoki kelajak sana |
+  | `400` `relationship_invalid` | ro'yxatdan tashqari qiymat |

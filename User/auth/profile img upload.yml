@@ -1,0 +1,46 @@
+info:
+  name: profile img upload
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{base_url}}/user/profile/img"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: multipart-form
+    data:
+      - name: files
+        type: file
+        value: []
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Profil rasmini yuklaydi (**multipart/form-data**, maydon nomi `files`).
+
+  | Cheklov | Qiymat |
+  |---|---|
+  | format | `jpg`, `jpeg`, `png`, `webp` |
+  | hajm | 5 MB gacha |
+  | soni | **1 ta** — profil rasmi bitta |
+
+  Yangi rasm yuklansa **eskisi diskdan avtomatik o'chadi** — qo'lda
+  tozalash kerak emas.
+
+  | Xato | Sabab |
+  |---|---|
+  | `400` `files_required` | fayl yuborilmagan |
+  | `400` `file_type_not_allowed` | rasm emas (masalan `.txt`) |
+  | `400` `file_too_large` | 5 MB dan katta |
+  | `400` `too_many_files` | 1 tadan ko'p fayl |
+
+  Javobda yangilangan `user` obyekti, ichida `img[0].url` bilan.

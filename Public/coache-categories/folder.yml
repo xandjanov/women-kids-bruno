@@ -1,0 +1,23 @@
+info:
+  name: coache-categories
+  type: folder
+  seq: 9
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · coache-categories
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/coache-categories` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/coache-categories/list` |
+  type: text/markdown

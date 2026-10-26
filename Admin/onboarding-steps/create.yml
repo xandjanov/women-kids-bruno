@@ -1,0 +1,52 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/onboarding-steps/create"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Ro'yxatdan o'ting",
+        "title_ru": "Зарегистрируйтесь",
+        "title_uz": "Рўйхатдан ўтинг",
+        "title_en": "Sign up",
+        "short_content_oz": "Boshlash uchun ariza qoldiring.",
+        "short_content_ru": "Оставьте заявку, чтобы начать.",
+        "short_content_uz": "Бошлаш учун ариза қолдиринг.",
+        "short_content_en": "Submit an application to get started.",
+        "sort_order": 0,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yangi boshlash bosqichini yaratish. JSON body, admin yoki superadmin tokeni kerak.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `title_oz/ru/uz/en` | string | max 255, ixtiyoriy |
+  | `short_content_oz/ru/uz/en` | string | text, ixtiyoriy |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+
+  Barcha maydonlar ixtiyoriy. `{}` ham 201 qaytaradi.
+  Yaratilgach OnboardingStep List so'rovini yuboring yoki Local environmentdagi
+  `onboardingStepId`ni kerakli yozuv IDsi bilan almashtiring.
+  Xabarlar `Accept-Language` bo'yicha tarjima qilinadi.
+  URL `onboarding-steps`, jadval nomi `onboarding_steps`.

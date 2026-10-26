@@ -1,0 +1,31 @@
+info:
+  name: file lang
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{base_url}}/directions/image/{{direction_id}}/lang/{{file_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  params:
+    - name: lang
+      value: "oz"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Mavjud faylning tilini o'zgartiradi. Til QUERY parametrda beriladi (body yo'q).
+
+  lang: oz | ru | uz | en | all
+        all yoki bo'sh = barcha tillarda ko'rinadi.
+
+  Noto'g'ri til - 400, fayl topilmasa - 404.

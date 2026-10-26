@@ -1,0 +1,49 @@
+info:
+  name: profile update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/user/profile"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "full_name": "Malika Karimova"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Foydalanuvchi **o'z** profilini yangilaydi. `userToken` bilan ishlaydi.
+
+  | Maydon | Cheklov |
+  |---|---|
+  | `full_name` | ixtiyoriy, 2..255, **unique** — boshqa userda bo'lmasligi kerak |
+
+  `user_id` body'dan olinmaydi — tokendan aniqlanadi, shuning uchun
+  birovning profilini yangilab bo'lmaydi.
+
+  | Xato | Sabab |
+  |---|---|
+  | `400` `full_name_exists` | bu ism allaqachon band |
+  | `400` `validation_failed` | ism 2 belgidan qisqa yoki 255 dan uzun |
+  | `401` | token yaroqsiz |
+
+  **`phone` bu yerda o'zgarmaydi** — telefon login identifikatori, uni
+  almashtirish uchun yangi raqamga SMS kod yuborib tasdiqlash oqimi kerak
+  (hozircha yo'q).
+
+  Javobda yangilangan `user` obyekti qaytadi.

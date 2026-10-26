@@ -1,0 +1,53 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/advantages/create"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Tajribali murabbiylar",
+        "title_ru": "Опытные тренеры",
+        "title_uz": "Тажрибали мураббийлар",
+        "title_en": "Experienced trainers",
+        "short_content_oz": "Har bir ishtirokchiga individual yondashuv.",
+        "short_content_ru": "Индивидуальный подход к каждому участнику.",
+        "short_content_uz": "Ҳар бир иштирокчига индивидуал ёндашув.",
+        "short_content_en": "Individual attention for every participant.",
+        "icon": "award",
+        "sort_order": 0,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yangi afzallik yaratish. JSON body, admin yoki superadmin tokeni kerak.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `title_oz/ru/uz/en` | string | text, ixtiyoriy |
+  | `short_content_oz/ru/uz/en` | string | text, ixtiyoriy |
+  | `icon` | string | max 255, ixtiyoriy |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+
+  Barcha maydonlar ixtiyoriy. `{}` ham 201 qaytaradi.
+  Yaratilgach Advantage List so'rovini yuboring yoki Local environmentdagi
+  `advantageId`ni kerakli yozuv IDsi bilan almashtiring.
+  Xabarlar `Accept-Language` bo'yicha tarjima qilinadi.

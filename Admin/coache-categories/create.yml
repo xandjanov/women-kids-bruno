@@ -1,0 +1,48 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/coache-categories/create"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Fitnes",
+        "title_ru": "Фитнес",
+        "title_uz": "Фитнес",
+        "title_en": "Fitness",
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yangi murabbiy kategoriyasi yaratish. JSON body, admin yoki superadmin tokeni kerak.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `title_oz/ru/uz/en` | string | max 255, ixtiyoriy |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+
+  Barcha maydonlar ixtiyoriy. `{}` ham 201 qaytaradi.
+
+  DIQQAT: bu jadvalda `sort_order` ustuni YO'Q — tartiblash endpointi ishlamaydi
+  (`/api/v1/coache-categories/sort-order` 404 qaytaradi). Ro'yxat `id ASC` tartibida.
+
+  Bu kategoriyalar `Coache` yozuvlarida `coache_category_id` orqali ishlatiladi —
+  shuning uchun murabbiy yaratishdan oldin kategoriya yaratib oling.
+  URL `coache-categories`, jadval nomi `coache_categories`.

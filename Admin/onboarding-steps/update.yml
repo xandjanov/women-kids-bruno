@@ -1,0 +1,42 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/onboarding-steps/update/{{onboarding_step_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Ariza qoldiring",
+        "title_ru": "Оставьте заявку",
+        "title_uz": "Ариза қолдиринг",
+        "title_en": "Submit an application",
+        "short_content_oz": "Sizga qulay vaqtda bog'lanishimiz uchun ma'lumotlaringizni yuboring.",
+        "short_content_ru": "Отправьте свои данные, чтобы мы связались с вами в удобное время.",
+        "short_content_uz": "Сизга қулай вақтда боғланишимиз учун маълумотларингизни юборинг.",
+        "short_content_en": "Send your details so we can contact you at a convenient time.",
+        "sort_order": 1,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Qisman yangilash: faqat yuborilgan maydonlar o'zgaradi.
+  `title_oz/ru/uz/en` maksimum 255 belgi, `short_content_oz/ru/uz/en` text.
+  Bo'sh satr maydonni tozalaydi, false va 0 ham saqlanadi.
+  Yozuv topilmasa tarjimali 404 qaytadi.

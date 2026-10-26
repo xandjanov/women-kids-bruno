@@ -1,0 +1,29 @@
+info:
+  name: onboarding-steps
+  type: folder
+  seq: 9
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # OnboardingSteps — boshlash bosqichlari
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/onboarding-steps` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/onboarding-steps/create` |
+    | `get all` | GET | `/onboarding-steps/list` |
+    | `get by id` | GET | `/onboarding-steps/detail/{{onboarding_step_id}}` |
+    | `update` | PATCH | `/onboarding-steps/update/{{onboarding_step_id}}` |
+    | `delete` | DELETE | `/onboarding-steps/delete/{{onboarding_step_id}}` |
+    | `status update` | PATCH | `/onboarding-steps/{{onboarding_step_id}}/status` |
+    | `sort order` | PATCH | `/onboarding-steps/sort-order` |
+  type: text/markdown

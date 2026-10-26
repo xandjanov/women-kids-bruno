@@ -1,0 +1,37 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/coache-categories/update/{{coache_category_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Yoga",
+        "title_ru": "Йога",
+        "title_uz": "Йога",
+        "title_en": "Yoga",
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Qisman yangilash: faqat yuborilgan maydonlar o'zgaradi.
+  `title_oz/ru/uz/en` maksimum 255 belgi.
+  Bo'sh satr maydonni tozalaydi, false ham saqlanadi.
+  Yozuv topilmasa tarjimali 404 qaytadi.

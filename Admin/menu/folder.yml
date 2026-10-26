@@ -1,0 +1,33 @@
+info:
+  name: menu
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Menu — daraxt menyu
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/menu` |
+    | **Rol** | `admin`, `superadmin` |
+
+    `sort order` menyuning **o'z** endpointi (`/menu/sort-order`), global `:table` dan farq qiladi.
+    `get all (flat)` — `cat_id` select uchun tekis ro'yxat.
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/menu/create` |
+    | `get all` | GET | `/menu/list` |
+    | `get all (flat)` | GET | `/menu/all` |
+    | `get by id` | GET | `/menu/detail/{{menu_id}}` |
+    | `update` | PATCH | `/menu/update/{{menu_id}}` |
+    | `delete` | DELETE | `/menu/delete/{{menu_id}}` |
+    | `status update` | PATCH | `/menu/{{menu_id}}/status` |
+    | `sort order` | PATCH | `/menu/sort-order` |
+  type: text/markdown

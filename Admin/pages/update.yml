@@ -1,0 +1,57 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/pages/update/{{page_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "key": "about-us",
+        "title_oz": "Biz haqimizda (yangilangan)",
+        "title_ru": "О нас (обновлено)",
+        "title_uz": "Биз ҳақимизда (янгиланган)",
+        "title_en": "About us (updated)",
+        "short_content_oz": "Yangilangan qisqa matn",
+        "short_content_ru": "Обновлённый короткий текст",
+        "short_content_uz": "Янгиланган қисқа матн",
+        "short_content_en": "Updated short text",
+        "content_oz": "<p>Yangilangan toliq matn.</p>",
+        "content_ru": "<p>Обновлённый полный текст.</p>",
+        "content_uz": "<p>Янгиланган тўлиқ матн.</p>",
+        "content_en": "<p>Updated full text.</p>",
+        "options": "",
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  JSON (multipart EMAS). `UpdatePagesRequest` dagi HAMMA maydon yozilgan —
+  keraksizini o'chirib yuborsangiz, o'sha maydon tegilmaydi.
+
+  | Maydon | Cheklov |
+  |---|---|
+  | `key` | max 155 — band bo'lsa 409 |
+  | `title_oz/ru/uz/en` | max 255 |
+  | `short_content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `options` | max 255 |
+  | `status` | bool |
+
+  Bo'sh satr (`""`) yuborilsa maydon tozalanadi.
+  Fayl qo'shish/o'chirish uchun `11-Media` papkasi (`table` = `pages`).

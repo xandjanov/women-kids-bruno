@@ -1,0 +1,45 @@
+info:
+  name: file upload
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/menu/{{menu_id}}/upload"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: multipart-form
+    data:
+      - name: files
+        type: file
+        value: []
+      - name: lang
+        type: text
+        value: "oz"
+        disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Mavjud yozuvga fayl qo'shish. `table` va `recordId` env o'zgaruvchilaridan olinadi.
+
+  Ruxsat etilgan table:
+    pages | menu | branches | usefuls | coaches | directions
+
+  Cheklovlar:
+    rasm (jpg/jpeg/png/webp) - max 5MB (pages, menu, branches, usefuls, coaches, directions)
+    mp4 (video, menu)        - max 100MB
+    bitta so'rovda max 100 ta fayl
+
+  lang - har bir faylga til (oz|ru|uz|en|all). Yuborilsa FAYL SONI BILAN TENG bo'lishi shart.
+         Bo'sh/all = barcha tillarda ko'rinadi.
+
+  Birinchi yuklangan fayl avtomatik is_main bo'ladi (agar yozuvda fayl bo'lmagan bo'lsa).

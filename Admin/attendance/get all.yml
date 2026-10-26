@@ -1,0 +1,80 @@
+info:
+  name: get all
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{base_url}}/user-memberships/attendance?user_id={{user_id}}"
+  headers:
+    - name: Accept-Language
+      value: oz
+  params:
+    - name: user_id
+      value: "{{user_id}}"
+      type: query
+    - name: membership_id
+      value: "{{membership_id}}"
+      type: query
+      disabled: true
+    - name: page
+      value: "1"
+      type: query
+      disabled: true
+    - name: limit
+      value: "10"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Tashriflar tarixi — `attendance_logs` jadvali. Eng yangisi birinchi
+  (`visited_at DESC, id DESC`). limit: 1..100, standart 10.
+
+  **Bu jadvalda create/update/delete endpointi YO'Q.** Yozuv faqat
+  `23-UserMembership / Check-In (QR)` muvaffaqiyatli o'tganda, check-in bilan
+  bitta tranzaksiyada qo'shiladi. Shuning uchun bu papkada bitta so'rov bor.
+
+  | Filtr | Ma'nosi |
+  |---|---|
+  | `user_id` | bitta foydalanuvchining tashriflari |
+  | `membership_id` | bitta tarif bo'yicha tashriflar |
+
+  Ikkala filtr ham `~` bilan o'chirilgan — kerak bo'lsa Bruno'da checkbox'ini
+  belgilang.
+
+  ```json
+  {
+    "items": [
+      {
+        "id": 6,
+        "user_membership_id": 2,
+        "user_id": 4,
+        "holder_name": "Sevinch Karimova",
+        "tariff_title": "Bolalar",
+        "staff_id": 37,
+        "staff_username": "superadmin",
+        "visits_left": 0,
+        "visited_at": "2026-10-23T18:16:13.929843+05:00"
+      }
+    ],
+    "total": 6,
+    "page": 1,
+    "limit": 10
+  }
+  ```
+
+  | Maydon | Izoh |
+  |---|---|
+  | `holder_name` | tashrif paytidagi egasining ismi (nusxa, keyin o'zgarmaydi) |
+  | `staff_username` | QR kodni skanerlagan xodim |
+  | `visits_left` | o'sha tashrifdan KEYIN qolgan tashriflar soni |
+
+  Ro'yxat bo'sh bo'lsa — avval `23-UserMembership / Check-In (QR)` ni yuboring.

@@ -1,0 +1,23 @@
+info:
+  name: metrics
+  type: folder
+  seq: 5
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · metrics
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/metrics` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/metrics/list` |
+  type: text/markdown

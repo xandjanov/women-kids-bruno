@@ -1,0 +1,26 @@
+info:
+  name: delete
+  type: http
+  seq: 7
+
+http:
+  method: DELETE
+  url: "{{base_url}}/coache-categories/delete/{{coache_category_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yozuvni o'chiradi. Topilmasa 404.
+
+  DIQQAT: kategoriya o'chirilsa, unga bog'langan murabbiylarning
+  `coache_category_id` qiymati o'zgarmaydi (FK cheklovi yo'q) —
+  shuning uchun o'chirishdan oldin `Coache List` bilan tekshirib oling.

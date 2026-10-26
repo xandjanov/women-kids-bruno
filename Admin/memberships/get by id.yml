@@ -1,0 +1,24 @@
+info:
+  name: get by id
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{base_url}}/memberships/detail/{{membership_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  ID bo'yicha bitta tarif — admin uchun HAMMA til maydonlari bilan
+  (`title_oz`, `short_content_ru`, ...).
+  Topilmasa 404, id raqam bo'lmasa 400.

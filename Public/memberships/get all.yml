@@ -1,0 +1,38 @@
+info:
+  name: get all
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{public_url}}/public/memberships/list"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  params:
+    - name: group
+      value: "adults"
+      type: query
+    - name: group
+      value: "kids"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Ochiq (token kerak emas). Faqat `status: true` tariflar,
+  `sort_order ASC, id ASC` tartibida.
+
+  `19-Direction` dagidek: `group` qiymatlari tayyor qator bo'lib turadi,
+  bittasi yoqilgan. Saytdagi "Kattalar" / "Bolalar" tablari shu bilan
+  to'ldiriladi — kerakligining checkbox'ini belgilab, oldingisini o'chiring.
+  Filtrni butunlay o'chirsangiz hamma tarif chiqadi, noto'g'ri qiymat `400`.
+
+  Til `Accept-Language` bilan: oz | ru | uz | en (standart oz).

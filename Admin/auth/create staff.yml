@@ -1,0 +1,38 @@
+info:
+  name: create staff
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{base_url}}/admin/staff/create"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "redactor1",
+        "email": "redactor1@wk.local",
+        "password": "Redactor@123",
+        "role": "superadmin",
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yangi staff yaratish. Faqat superadmin.
+
+  Majburiy: username (2-50), email (email, max 50), password (min 8), role
+  role: superadmin | admin | redactor
+  status — ixtiyoriy, standart true

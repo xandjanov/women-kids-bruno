@@ -1,0 +1,23 @@
+info:
+  name: trial-benefits
+  type: folder
+  seq: 6
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · trial-benefits
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/trial-benefits` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/trial-benefits/list` |
+  type: text/markdown

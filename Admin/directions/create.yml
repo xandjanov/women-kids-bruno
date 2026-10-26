@@ -1,0 +1,123 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/directions/create"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: multipart-form
+    data:
+      - name: group
+        type: text
+        value: "women"
+      - name: group
+        type: text
+        value: "kids"
+        disabled: true
+      - name: group
+        type: text
+        value: "women_and_kids"
+        disabled: true
+      - name: week
+        type: text
+        value: "5"
+      - name: week
+        type: text
+        value: "6"
+      - name: title_oz
+        type: text
+        value: "Yoga"
+      - name: title_ru
+        type: text
+        value: "Йога"
+      - name: title_uz
+        type: text
+        value: "Йога"
+      - name: title_en
+        type: text
+        value: "Yoga"
+      - name: short_content_oz
+        type: text
+        value: "Ayollar uchun nafas va cho'zilish mashqlari."
+      - name: short_content_ru
+        type: text
+        value: "Дыхательные упражнения и растяжка для женщин."
+      - name: short_content_uz
+        type: text
+        value: "Аёллар учун нафас ва чўзилиш машқлари."
+      - name: short_content_en
+        type: text
+        value: "Breathing and stretching classes for women."
+      - name: age_oz
+        type: text
+        value: "18+"
+      - name: age_ru
+        type: text
+        value: "18+"
+      - name: age_uz
+        type: text
+        value: "18+"
+      - name: age_en
+        type: text
+        value: "18+"
+      - name: sort_order
+        type: text
+        value: "0"
+      - name: status
+        type: text
+        value: "true"
+      - name: files
+        type: file
+        value: []
+        disabled: true
+      - name: lang
+        type: text
+        value: "oz"
+        disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  multipart/form-data — bu modelda `files` bor, shuning uchun create JSON EMAS.
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `group` | string | **MAJBURIY** — women, kids yoki women_and_kids |
+  | `week` | int[] | hafta kunlari, `0`dan `7`gacha; bir nechta qiymat yuboriladi |
+  | `title_oz/ru/uz/en` | string | text, ixtiyoriy |
+  | `short_content_oz/ru/uz/en` | string | text, ixtiyoriy |
+  | `age_oz/ru/uz/en` | string | text, ixtiyoriy (masalan "18+", "5-12") |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+  | `files` | file | rasm (jpg/jpeg/png/webp), har biri max 5MB, 100 tagacha |
+  | `lang` | string | har bir faylga til (oz/ru/uz/en/all), FAYL SONI BILAN TENG |
+
+  **`week` ni yuborishning ikki yo'li** — ikkisi ham ishlaydi:
+
+  | Ko'rinish | Natija |
+  |---|---|
+  | `week: 5` + `week: 6` (takrorlangan qator) | `[5, 6]` |
+  | `week: 5,6` (bitta qatorda vergul bilan) | `[5, 6]` |
+
+  Server qiymatlarni tartiblaydi va takrorlarini olib tashlaydi:
+  `4,2,2` → `[2, 4]`. Bo'sh qoldirilsa `[]` saqlanadi.
+
+  Xatolar:
+  - `group` yuborilmasa 400 (validation)
+  - `group` noto'g'ri bo'lsa 400 + ruxsat etilgan guruhlar bilan tarjimali xato
+  - `week` da 0..7 dan tashqari son yoki raqam bo'lmagan qiymat bo'lsa 400 + tarjimali xato
+  - fayl turi yoki hajmi noto'g'ri bo'lsa 400
+
+  Birinchi yuklangan fayl avtomatik `is_main` bo'ladi.
+  Insert muvaffaqiyatsiz bo'lsa yuklangan fayllar diskdan o'chiriladi.

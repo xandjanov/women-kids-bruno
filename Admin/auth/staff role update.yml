@@ -1,0 +1,31 @@
+info:
+  name: staff role update
+  type: http
+  seq: 10
+
+http:
+  method: PATCH
+  url: "{{base_url}}/admin/staff/{{staff_id}}/role"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "role": "admin"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Rolni o'zgartirish. superadmin | admin | redactor
+  O'z rolini o'zgartirishga ruxsat yo'q (403).

@@ -1,0 +1,23 @@
+info:
+  name: coaches
+  type: folder
+  seq: 10
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · coaches
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/coaches` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/coaches/list` |
+  type: text/markdown

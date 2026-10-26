@@ -1,0 +1,25 @@
+info:
+  name: directions media
+  type: folder
+  seq: 99
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # directions media
+
+    `directions` uchun fayl amallari.
+
+    Yangi fayllar mavjudlariga **qo'shiladi** (almashtirmaydi).
+    `file is-main` muqova rasmni belgilaydi — ro'yxatlarda faqat shu qaytadi.
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `file upload` | POST | `/directions/{{direction_id}}/upload` |
+    | `file is-main` | PATCH | `/directions/{{direction_id}}/files/{{file_id}}/is-main` |
+    | `file lang` | POST | `/directions/image/{{direction_id}}/lang/{{file_id}}` |
+    | `file sort order` | PATCH | `/directions/{{direction_id}}/files/sort-order` |
+    | `file delete` | DELETE | `/directions/{{direction_id}}/files/{{file_id}}/delete` |
+  type: text/markdown

@@ -1,0 +1,23 @@
+info:
+  name: socials
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · socials
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/socials` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/socials/list` |
+  type: text/markdown

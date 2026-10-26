@@ -1,0 +1,25 @@
+info:
+  name: attendance
+  type: folder
+  seq: 15
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Attendance — zalga tashriflar tarixi
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/attendance` |
+    | **Rol** | `admin`, `superadmin` |
+
+    Faqat o'qish uchun. Yozuv `user-memberships / check-in (qr)` orqali tushadi.
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/user-memberships/attendance` |
+  type: text/markdown

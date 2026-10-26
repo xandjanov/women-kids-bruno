@@ -1,0 +1,26 @@
+info:
+  name: delete
+  type: http
+  seq: 7
+
+http:
+  method: DELETE
+  url: "{{base_url}}/memberships/delete/{{membership_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Tarifni o'chiradi. Topilmasa 404.
+
+  DIQQAT: biriktirilgan abonementlar (`user_memberships`) o'chmaydi — ular
+  o'z nusxasi bilan yashaydi, faqat `tariff_title` bo'sh qaytadi.
+  Odatda o'chirish o'rniga `status: false` qo'yish tavsiya etiladi.

@@ -1,0 +1,52 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/metrics/create"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "group": "coaches",
+        "title_oz": "Tajribali murabbiylar",
+        "title_ru": "Опытные тренеры",
+        "title_uz": "Тажрибали мураббийлар",
+        "title_en": "Experienced coaches",
+        "options": "120",
+        "sort_order": 0,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yangi ko'rsatkich yaratish. JSON bilan ishlaydi (fayl yuklamaydi, multipart EMAS).
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `group` | string | **MAJBURIY** — `coaches` yoki `about_studio` |
+  | `title_oz/ru/uz/en` | string | max 255, ixtiyoriy |
+  | `options` | string | max 255, ixtiyoriy |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+
+  `group` dan boshqa hamma maydon ixtiyoriy.
+  `group` yuborilmasa `400` (validation), noto'g'ri qiymat bo'lsa `400` + ruxsat
+  etilgan guruhlar ro'yxati bilan tarjimali xato qaytadi.
+
+  Guruh qiymatlarini `Metric Groups` so'rovidan ham olish mumkin.
+  Xato xabarlari `Accept-Language` bo'yicha tarjima bilan keladi.

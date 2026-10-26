@@ -1,0 +1,159 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/menu/create"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: multipart-form
+    data:
+      - name: cat_id
+        type: text
+        value: "0"
+      - name: title_oz
+        type: text
+        value: "Biz haqimizda"
+      - name: title_ru
+        type: text
+        value: "О нас"
+      - name: title_uz
+        type: text
+        value: "Биз ҳақимизда"
+      - name: title_en
+        type: text
+        value: "About us"
+      - name: short_content_oz
+        type: text
+        value: "Menyu uchun qisqa matn"
+      - name: short_content_ru
+        type: text
+        value: "Короткий текст для меню"
+      - name: short_content_uz
+        type: text
+        value: "Меню учун қисқа матн"
+      - name: short_content_en
+        type: text
+        value: "Short text for the menu"
+      - name: content_oz
+        type: text
+        value: "<p>Menyu toliq matni.</p>"
+      - name: content_ru
+        type: text
+        value: "<p>Полный текст меню.</p>"
+      - name: content_uz
+        type: text
+        value: "<p>Меню тўлиқ матни.</p>"
+      - name: content_en
+        type: text
+        value: "<p>Full menu text.</p>"
+      - name: address_oz
+        type: text
+        value: "Toshkent sh., Amir Temur ko'chasi 1"
+      - name: address_ru
+        type: text
+        value: "г. Ташкент, улица Амира Темура 1"
+      - name: address_uz
+        type: text
+        value: "Тошкент ш., Амир Темур кўчаси 1"
+      - name: address_en
+        type: text
+        value: "Tashkent, Amir Temur street 1"
+      - name: inner_link
+        type: text
+        value: "/about-us"
+      - name: external_link
+        type: text
+        value: ""
+      - name: link
+        type: text
+        value: "https://menu.example.uz"
+      - name: meta_title_oz
+        type: text
+        value: "Biz haqimizda"
+      - name: meta_title_ru
+        type: text
+        value: "О нас"
+      - name: meta_title_uz
+        type: text
+        value: "Биз ҳақимизда"
+      - name: meta_title_en
+        type: text
+        value: "About us"
+      - name: meta_description_oz
+        type: text
+        value: "Biz haqimizda sahifasi"
+      - name: meta_description_ru
+        type: text
+        value: "Страница о нас"
+      - name: meta_description_uz
+        type: text
+        value: "Биз ҳақимизда саҳифаси"
+      - name: meta_description_en
+        type: text
+        value: "About us page"
+      - name: meta_keywords_oz
+        type: text
+        value: "biz, haqimizda"
+      - name: meta_keywords_ru
+        type: text
+        value: "о нас, компания"
+      - name: meta_keywords_uz
+        type: text
+        value: "биз, ҳақимизда"
+      - name: meta_keywords_en
+        type: text
+        value: "about, us"
+      - name: slug
+        type: text
+        value: "biz-haqimizda"
+      - name: sort_order
+        type: text
+        value: "0"
+      - name: status
+        type: text
+        value: "true"
+      - name: files
+        type: file
+        value: []
+        disabled: true
+      - name: lang
+        type: text
+        value: "oz"
+        disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  multipart/form-data. `CreateMenuDto` dagi HAMMA maydon yozilgan.
+
+  | Maydon guruhi | Cheklov |
+  |---|---|
+  | `title_oz/ru/uz/en` | max 255 |
+  | `short_content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `address_oz/ru/uz/en` | max 255 |
+  | `meta_title_oz/ru/uz/en` | cheklovsiz |
+  | `meta_description_oz/ru/uz/en` | cheklovsiz |
+  | `meta_keywords_oz/ru/uz/en` | cheklovsiz |
+  | `inner_link`, `external_link` | max 255 |
+  | `link` | cheklovsiz (text) |
+  | `slug` | max 255 — bo'sh bo'lsa title'dan yasaladi |
+  | `cat_id` | ota menyu ID; `0`/bo'sh = ildiz. Yo'q ID -> 400 |
+  | `sort_order` | int, standart 0 |
+  | `status` | bool, standart true |
+  | `files` | rasm/mp4, `lang` fayl soniga teng bo'lishi shart |
+
+  Public javobda har guruh `Accept-Language` bo'yicha bittaga aylanadi:
+  `title`, `short_content`, `content`, `address`, `meta_title`,
+  `meta_description`, `meta_keywords`.

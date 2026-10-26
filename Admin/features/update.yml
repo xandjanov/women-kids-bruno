@@ -1,0 +1,43 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/features/update/{{feature_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "group": "footer",
+        "title_oz": "Tezkor yetkazib berish (yangilangan)",
+        "title_ru": "Быстрая доставка (обновлено)",
+        "title_uz": "Тезкор етказиб бериш (янгиланган)",
+        "title_en": "Fast delivery (updated)",
+        "sort_order": 1,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Qisman yangilash — faqat yuborilgan maydonlar o'zgaradi.
+
+  `group` yuborilmasa o'zgarmaydi. Yuborilsa `header`/`footer` dan biri
+  bo'lishi shart, aks holda `400` + tarjima qilingan xato.
+  Shu so'rov yozuvni bir guruhdan boshqasiga ko'chirish uchun ishlatiladi.
+
+  Bo'sh satr (`""`) yuborilgan matn maydonlari tozalanadi, lekin `group` uchun
+  bo'sh satr yaroqsiz — `400` qaytadi.

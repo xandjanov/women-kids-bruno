@@ -1,0 +1,62 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/memberships/update/{{membership_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "group": "kids",
+        "title_oz": "Bolalar",
+        "title_ru": "Детский",
+        "title_uz": "Болалар",
+        "title_en": "Kids",
+        "short_content_oz": "Haftasiga 3 ta mashg'ulot",
+        "short_content_ru": "3 занятия в неделю",
+        "short_content_uz": "Ҳафтасига 3 та машғулот",
+        "short_content_en": "3 classes a week",
+        "price": 500000,
+        "old_price": 0,
+        "validity_days": 30,
+        "total_visits": 12,
+        "color": "#8B6BFF",
+        "icon": "child",
+        "sort_order": 1,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  JSON. `UpdateMembershipRequest` dagi HAMMA maydon yozilgan —
+  keraksizini o'chirib yuborsangiz, o'sha maydon tegilmaydi.
+
+  | Maydon | Cheklov |
+  |---|---|
+  | `group` | `adults` yoki `kids` |
+  | `title_oz/ru/uz/en` | max 255 |
+  | `short_content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `price`, `old_price` | int64, >= 0 |
+  | `validity_days`, `total_visits` | int, >= 0 |
+  | `color`, `icon` | max 255 |
+  | `sort_order` | int |
+  | `status` | bool |
+
+  DIQQAT: tarifni o'zgartirish allaqachon **biriktirilgan** abonementlarga
+  ta'sir qilmaydi — `user_memberships` o'z `end_date` va `total_visits`
+  qiymatlarini biriktirish paytida nusxalab oladi.

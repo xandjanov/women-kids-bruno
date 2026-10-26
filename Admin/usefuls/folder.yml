@@ -1,0 +1,29 @@
+info:
+  name: usefuls
+  type: folder
+  seq: 18
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Usefuls — foydali havolalar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/usefuls` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/usefuls/create` |
+    | `get all` | GET | `/usefuls/list` |
+    | `get by id` | GET | `/usefuls/detail/{{useful_id}}` |
+    | `update` | PATCH | `/usefuls/update/{{useful_id}}` |
+    | `delete` | DELETE | `/usefuls/delete/{{useful_id}}` |
+    | `status update` | PATCH | `/usefuls/{{useful_id}}/status` |
+    | `sort order` | PATCH | `/usefuls/sort-order` |
+  type: text/markdown

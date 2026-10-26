@@ -1,0 +1,23 @@
+info:
+  name: branches
+  type: folder
+  seq: 13
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · branches
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/branches` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/branches/list` |
+  type: text/markdown

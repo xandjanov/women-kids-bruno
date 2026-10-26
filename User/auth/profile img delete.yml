@@ -1,0 +1,25 @@
+info:
+  name: profile img delete
+  type: http
+  seq: 8
+
+http:
+  method: DELETE
+  url: "{{base_url}}/user/profile/img"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Profil rasmini olib tashlaydi — `img` `null` bo'ladi va fayl diskdan
+  o'chiriladi.
+
+  Rasm yo'q bo'lsa ham `200` qaytaradi (idempotent).

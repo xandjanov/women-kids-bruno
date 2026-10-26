@@ -1,0 +1,30 @@
+info:
+  name: metrics
+  type: folder
+  seq: 6
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Metrics — ko'rsatkichlar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/metrics` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `groups` | GET | `/metrics/groups` |
+    | `create` | POST | `/metrics/create` |
+    | `get all` | GET | `/metrics/list` |
+    | `get by id` | GET | `/metrics/detail/{{metric_id}}` |
+    | `update` | PATCH | `/metrics/update/{{metric_id}}` |
+    | `delete` | DELETE | `/metrics/delete/{{metric_id}}` |
+    | `status update` | PATCH | `/metrics/{{metric_id}}/status` |
+    | `sort order` | PATCH | `/metrics/sort-order` |
+  type: text/markdown

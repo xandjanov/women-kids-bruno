@@ -1,0 +1,30 @@
+info:
+  name: get all
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{public_url}}/public/pages/list"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "10"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Ochiq (token kerak emas). Faqat status: true yozuvlar.
+  Til Accept-Language header bilan: oz | ru | uz | en (standart oz).

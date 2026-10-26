@@ -1,0 +1,25 @@
+info:
+  name: branches media
+  type: folder
+  seq: 99
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # branches media
+
+    `branches` uchun fayl amallari.
+
+    Yangi fayllar mavjudlariga **qo'shiladi** (almashtirmaydi).
+    `file is-main` muqova rasmni belgilaydi — ro'yxatlarda faqat shu qaytadi.
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `file upload` | POST | `/branches/{{branch_id}}/upload` |
+    | `file is-main` | PATCH | `/branches/{{branch_id}}/files/{{file_id}}/is-main` |
+    | `file lang` | POST | `/branches/image/{{branch_id}}/lang/{{file_id}}` |
+    | `file sort order` | PATCH | `/branches/{{branch_id}}/files/sort-order` |
+    | `file delete` | DELETE | `/branches/{{branch_id}}/files/{{file_id}}/delete` |
+  type: text/markdown

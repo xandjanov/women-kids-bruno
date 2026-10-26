@@ -1,0 +1,30 @@
+info:
+  name: Public
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Public — sayt uchun ochiq endpointlar
+
+    **Token talab qilinmaydi.** Bu papkadagi so'rovlar **`{{public_url}}`** dan
+    foydalanadi (`http://localhost:8000`), chunki public route'lar `/api/v1` ostida emas.
+
+    ## Umumiy qoidalar
+    - Faqat **`status: true`** yozuvlar qaytadi.
+    - Matn maydonlari **bitta tilda** keladi (`title`, `short_content`, ...) — `Accept-Language` bo'yicha.
+    - Ro'yxatlarda `files` — faqat asosiy (`is_main`) fayl.
+    - Saralash: `sort_order ASC, id ASC`.
+
+    ## Til
+    | Header | Til |
+    |---|---|
+    | `oz` | O'zbek lotin — server default |
+    | `uz` | O'zbek kirill |
+    | `ru` | Rus |
+    | `en` | Ingliz |
+
+  type: text/markdown

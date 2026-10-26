@@ -1,0 +1,30 @@
+info:
+  name: directions
+  type: folder
+  seq: 12
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Directions — yo'nalishlar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/directions` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `groups` | GET | `/directions/groups` |
+    | `create` | POST | `/directions/create` |
+    | `get all` | GET | `/directions/list` |
+    | `get by id` | GET | `/directions/detail/{{direction_id}}` |
+    | `update` | PATCH | `/directions/update/{{direction_id}}` |
+    | `delete` | DELETE | `/directions/delete/{{direction_id}}` |
+    | `status update` | PATCH | `/directions/{{direction_id}}/status` |
+    | `sort order` | PATCH | `/directions/sort-order` |
+  type: text/markdown

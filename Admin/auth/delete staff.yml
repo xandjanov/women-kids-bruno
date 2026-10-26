@@ -1,0 +1,23 @@
+info:
+  name: delete staff
+  type: http
+  seq: 12
+
+http:
+  method: DELETE
+  url: "{{base_url}}/admin/staff/delete/{{staff_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Staff'ni o'chirish. O'zini o'chirishga ruxsat yo'q (403).
+  Sessiyalari ham birga o'chadi.

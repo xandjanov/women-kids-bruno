@@ -1,0 +1,66 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/trial-offers/update/{{trial_offer_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Bir haftalik sinov (yangilangan)",
+        "title_ru": "Недельный пробный период (обновлено)",
+        "title_uz": "Бир ҳафталик синов (янгиланган)",
+        "title_en": "One week trial (updated)",
+        "short_content_oz": "Yangilangan qisqa matn",
+        "short_content_ru": "Обновлённый короткий текст",
+        "short_content_uz": "Янгиланган қисқа матн",
+        "short_content_en": "Updated short text",
+        "content_oz": "<p>Yangilangan shartlar.</p>",
+        "content_ru": "<p>Обновлённые условия.</p>",
+        "content_uz": "<p>Янгиланган шартлар.</p>",
+        "content_en": "<p>Updated terms.</p>",
+        "adults_oz": "Kattalar uchun 150 000 so'm",
+        "adults_ru": "Для взрослых 150 000 сум",
+        "adults_uz": "Катталар учун 150 000 сўм",
+        "adults_en": "Adults 150 000 UZS",
+        "children_oz": "Bolalar uchun 75 000 so'm",
+        "children_ru": "Для детей 75 000 сум",
+        "children_uz": "Болалар учун 75 000 сўм",
+        "children_en": "Children 75 000 UZS",
+        "icon": "star-fill",
+        "sort_order": 1,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  JSON. `UpdateTrialOfferRequest` dagi HAMMA maydon yozilgan —
+  keraksizini o'chirib yuborsangiz, o'sha maydon tegilmaydi.
+
+  | Maydon guruhi | Cheklov |
+  |---|---|
+  | `title_oz/ru/uz/en` | max 255 |
+  | `short_content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `adults_oz/ru/uz/en` | max 255 |
+  | `children_oz/ru/uz/en` | max 255 |
+  | `icon` | max 255 |
+  | `sort_order` | int |
+  | `status` | bool |
+
+  Bo'sh satr (`""`) yuborilsa maydon tozalanadi.

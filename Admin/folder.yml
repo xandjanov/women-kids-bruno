@@ -1,0 +1,32 @@
+info:
+  name: Admin
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Admin — admin panel endpointlari
+
+    Hamma so'rov **`{{base_url}}`** dan foydalanadi (`http://localhost:8000/api/v1`)
+    va kolleksiya darajasidagi **`{{token}}`** ni meros qilib oladi.
+
+    `Admin / auth / login` ni yuborsangiz token avtomatik yoziladi — boshqa hech narsa sozlash shart emas.
+
+    ## Rollar
+    | Rol | Ruxsat |
+    |---|---|
+    | `superadmin` | hammasi + xodimlarni boshqarish + `feedback / delete` |
+    | `admin` | barcha kontent CRUD, media, status, sort order |
+    | `redactor` | faqat `auth/*` (o'z profili va sessiyalari) |
+
+    ## Har papkadagi standart so'rovlar
+    `create` · `get all` · `get by id` · `update` · `delete` · `status update` · `sort order`
+
+    Guruhli modellarda qo'shimcha `groups`, fayl saqlaydiganlarda esa
+    `<modul> media` ichki papkasi: `file upload` · `file is-main` · `file lang` ·
+    `file sort order` · `file delete`.
+
+  type: text/markdown

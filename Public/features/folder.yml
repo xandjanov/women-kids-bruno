@@ -1,0 +1,23 @@
+info:
+  name: features
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · features
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/features` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/features/list` |
+  type: text/markdown

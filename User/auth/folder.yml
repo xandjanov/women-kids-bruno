@@ -1,0 +1,38 @@
+info:
+  name: auth
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Auth — kirish va xodimlar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/auth` |
+    | **Rol** | `{{user_token}}` — sayt foydalanuvchisi |
+
+    Kirish `login` dan boshlanadi — u `token` ni avtomatik yozadi.
+    Qolgan barcha so'rovlar shu tokendan o'qiydi.
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `register` | POST | `/user/register` |
+    | `register verify` | POST | `/user/register/verify` |
+    | `login` | POST | `/user/login` |
+    | `login verify` | POST | `/user/login/verify` |
+    | `profile` | GET | `/user/profile` |
+    | `profile update` | PATCH | `/user/profile` |
+    | `profile img upload` | POST | `/user/profile/img` |
+    | `profile img delete` | DELETE | `/user/profile/img` |
+    | `sessions list` | GET | `/user/sessions` |
+    | `session revoke` | DELETE | `/user/sessions/{{user_session_id}}` |
+    | `logout` | POST | `/user/logout` |
+    | `logout all` | POST | `/user/logout-all` |
+    | `delete account` | DELETE | `/user/delete` |
+  type: text/markdown

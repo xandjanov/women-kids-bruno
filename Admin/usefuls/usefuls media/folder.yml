@@ -1,0 +1,25 @@
+info:
+  name: usefuls media
+  type: folder
+  seq: 99
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # usefuls media
+
+    `usefuls` uchun fayl amallari.
+
+    Yangi fayllar mavjudlariga **qo'shiladi** (almashtirmaydi).
+    `file is-main` muqova rasmni belgilaydi — ro'yxatlarda faqat shu qaytadi.
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `file upload` | POST | `/usefuls/{{useful_id}}/upload` |
+    | `file is-main` | PATCH | `/usefuls/{{useful_id}}/files/{{file_id}}/is-main` |
+    | `file lang` | POST | `/usefuls/image/{{useful_id}}/lang/{{file_id}}` |
+    | `file sort order` | PATCH | `/usefuls/{{useful_id}}/files/sort-order` |
+    | `file delete` | DELETE | `/usefuls/{{useful_id}}/files/{{file_id}}/delete` |
+  type: text/markdown

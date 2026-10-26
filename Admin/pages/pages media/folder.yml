@@ -1,0 +1,25 @@
+info:
+  name: pages media
+  type: folder
+  seq: 99
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # pages media
+
+    `pages` uchun fayl amallari.
+
+    Yangi fayllar mavjudlariga **qo'shiladi** (almashtirmaydi).
+    `file is-main` muqova rasmni belgilaydi — ro'yxatlarda faqat shu qaytadi.
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `file upload` | POST | `/pages/{{page_id}}/upload` |
+    | `file is-main` | PATCH | `/pages/{{page_id}}/files/{{file_id}}/is-main` |
+    | `file lang` | POST | `/pages/image/{{page_id}}/lang/{{file_id}}` |
+    | `file sort order` | PATCH | `/pages/{{page_id}}/files/sort-order` |
+    | `file delete` | DELETE | `/pages/{{page_id}}/files/{{file_id}}/delete` |
+  type: text/markdown

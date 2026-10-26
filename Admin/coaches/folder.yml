@@ -1,0 +1,30 @@
+info:
+  name: coaches
+  type: folder
+  seq: 11
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Coaches — murabbiylar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/coaches` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `groups` | GET | `/coaches/groups` |
+    | `create` | POST | `/coaches/create` |
+    | `get all` | GET | `/coaches/list` |
+    | `get by id` | GET | `/coaches/detail/{{coache_id}}` |
+    | `update` | PATCH | `/coaches/update/{{coache_id}}` |
+    | `delete` | DELETE | `/coaches/delete/{{coache_id}}` |
+    | `status update` | PATCH | `/coaches/{{coache_id}}/status` |
+    | `sort order` | PATCH | `/coaches/sort-order` |
+  type: text/markdown

@@ -1,0 +1,23 @@
+info:
+  name: pages
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · pages
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/pages` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/pages/list` |
+  type: text/markdown

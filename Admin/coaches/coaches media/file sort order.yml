@@ -1,0 +1,33 @@
+info:
+  name: file sort order
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{base_url}}/coaches/{{coache_id}}/files/sort-order"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "order": [2, 1, 3]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yozuv ichidagi FAYLLARNI qayta tartiblash.
+
+  DIQQAT: bu yerda kalit `order` (massiv - fayl ID'lari yangi tartibda).
+  Yozuvlarni tartiblash uchun 12-Common dagi `sort_order` kalitli so'rov ishlatiladi.

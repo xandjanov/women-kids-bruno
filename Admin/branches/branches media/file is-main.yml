@@ -1,0 +1,26 @@
+info:
+  name: file is-main
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{base_url}}/branches/{{branch_id}}/files/{{file_id}}/is-main"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Faylni asosiy (is_main) qilib belgilaydi - ro'yxatlarda shu rasm ko'rinadi.
+  Qolgan fayllarning is_main avtomatik false bo'ladi.
+
+  fileId - fayl ID (yozuv ichidagi tartib raqami, yozuv ID emas).
+  Topilmasa 404.

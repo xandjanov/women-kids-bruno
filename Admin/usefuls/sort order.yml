@@ -1,0 +1,39 @@
+info:
+  name: sort order
+  type: http
+  seq: 9
+
+http:
+  method: PATCH
+  url: "{{base_url}}/usefuls/sort-order"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "sort_order": [3, 1, 2]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  YOZUVLARNI qayta tartiblash (fayllarni emas).
+
+  Ruxsat etilgan table:
+    socials | features | metrics | coaches | directions | trial-benefits | advantages | onboarding-steps | branches | trial-offers | usefuls
+  (coache-categories bu yerda YOQ - unda sort_order ustuni mavjud emas)
+  (pages va menu bu yerda yo'q - menyu uchun 08-Menu / Menu Sort Order ishlatiladi)
+
+  - takroriy ID bo'lsa 400
+  - mavjud bo'lmagan ID bo'lsa 404
+  - hammasi bitta tranzaksiyada bajariladi

@@ -1,0 +1,35 @@
+info:
+  name: status update
+  type: http
+  seq: 8
+
+http:
+  method: PATCH
+  url: "{{base_url}}/menu/{{menu_id}}/status"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Har qanday yozuvning status (ko'rinadi / ko'rinmaydi) holatini o'zgartiradi.
+
+  Ruxsat etilgan table:
+    pages | socials | menu | features | metrics | coaches | coache-categories | directions | trial-benefits | advantages | onboarding-steps | branches | trial-offers | usefuls
+
+  `status` majburiy. Yozuv topilmasa 404, table ruxsat etilmagan bo'lsa 404.

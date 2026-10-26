@@ -1,0 +1,54 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/coaches/update/{{coache_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "group": "women_and_kids",
+        "coache_category_id": {{coache_category_id}},
+        "title_oz": "Dilnoza Karimova (yangilangan)",
+        "title_ru": "Дилноза Каримова (обновлено)",
+        "title_uz": "Дилноза Каримова (янгиланган)",
+        "title_en": "Dilnoza Karimova (updated)",
+        "short_content_oz": "10 yillik tajriba, ayollar va bolalar guruhlari.",
+        "short_content_ru": "10 лет опыта, группы для женщин и детей.",
+        "short_content_uz": "10 йиллик тажриба, аёллар ва болалар гуруҳлари.",
+        "short_content_en": "10 years of experience, women and kids groups.",
+        "sort_order": 1,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Qisman yangilash: create multipart, lekin UPDATE JSON.
+  Faqat yuborilgan maydonlar o'zgaradi.
+
+  `group` ixtiyoriy, lekin yuborilsa women | kids | women_and_kids
+  bo'lishi shart — boshqa qiymat 400 + tarjimali xato qaytaradi.
+
+  `coache_category_id`:
+  - mavjud ID yuborilsa biriktiriladi
+  - `0` yuborilsa kategoriya olib tashlanadi (ruxsat etilgan)
+  - mavjud bo'lmagan ID yuborilsa 400 + "kategoriya topilmadi"
+
+  Fayllar bu endpoint orqali o'zgarmaydi — buning uchun
+  `Coache Media Upload` yoki `11-Media` papkasidagi so'rovlardan foydalaning.
+  Yozuv topilmasa tarjimali 404 qaytadi.

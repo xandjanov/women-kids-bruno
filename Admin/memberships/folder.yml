@@ -1,0 +1,30 @@
+info:
+  name: memberships
+  type: folder
+  seq: 13
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Memberships — abonement tariflari
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/memberships` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `groups` | GET | `/memberships/groups` |
+    | `create` | POST | `/memberships/create` |
+    | `get all` | GET | `/memberships/list` |
+    | `get by id` | GET | `/memberships/detail/{{membership_id}}` |
+    | `update` | PATCH | `/memberships/update/{{membership_id}}` |
+    | `delete` | DELETE | `/memberships/delete/{{membership_id}}` |
+    | `status update` | PATCH | `/memberships/{{membership_id}}/status` |
+    | `sort order` | PATCH | `/memberships/sort-order` |
+  type: text/markdown

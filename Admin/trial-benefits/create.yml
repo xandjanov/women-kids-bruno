@@ -1,0 +1,48 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/trial-benefits/create"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Birinchi dars bepul",
+        "title_ru": "Первое занятие бесплатно",
+        "title_uz": "Биринчи дарс бепул",
+        "title_en": "First lesson free",
+        "options": "gift",
+        "sort_order": 0,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yangi sinov imtiyozi yaratish. JSON (fayl yuklamaydi, multipart EMAS).
+
+  | Maydon | Turi | Cheklov |
+  |---|---|---|
+  | `title_oz/ru/uz/en` | string | text, 255 belgi cheklovi yo'q, ixtiyoriy |
+  | `options` | string | max 255, ixtiyoriy |
+  | `sort_order` | int | ixtiyoriy, standart 0 |
+  | `status` | bool | ixtiyoriy, standart true; false ham saqlanadi |
+
+  Hamma maydon ixtiyoriy — `{}` ham 201 qaytaradi.
+  Xato xabarlari `Accept-Language` bo'yicha tarjima bilan keladi.
+
+  DIQQAT: URL `trial-benefits` (chiziqcha bilan), jadval nomi esa `trial_benefits`.

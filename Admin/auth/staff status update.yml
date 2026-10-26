@@ -1,0 +1,31 @@
+info:
+  name: staff status update
+  type: http
+  seq: 11
+
+http:
+  method: PATCH
+  url: "{{base_url}}/admin/staff/{{staff_id}}/status"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "status": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Bloklash / blokdan chiqarish. `status` majburiy.
+  `false` bo'lsa shu staff'ning hamma sessiyasi o'chadi va login 403 qaytaradi.

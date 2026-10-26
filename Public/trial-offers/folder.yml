@@ -1,0 +1,23 @@
+info:
+  name: trial-offers
+  type: folder
+  seq: 14
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · trial-offers
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/trial-offers` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/trial-offers/list` |
+  type: text/markdown

@@ -1,0 +1,37 @@
+info:
+  name: auth
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Auth — kirish va xodimlar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/auth` |
+    | **Rol** | `admin`, `superadmin` |
+
+    Kirish `login` dan boshlanadi — u `token` ni avtomatik yozadi.
+    Qolgan barcha so'rovlar shu tokendan o'qiydi.
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `login` | POST | `/admin/login` |
+    | `profile` | GET | `/auth/profile` |
+    | `sessions list` | GET | `/auth/sessions` |
+    | `session revoke` | DELETE | `/auth/sessions/{{session_id}}` |
+    | `logout` | POST | `/auth/logout` |
+    | `role list` | GET | `/admin/staff/roles` |
+    | `get all staff` | GET | `/admin/staff/list` |
+    | `create staff` | POST | `/admin/staff/create` |
+    | `update staff` | PATCH | `/admin/staff/update/{{staff_id}}` |
+    | `staff role update` | PATCH | `/admin/staff/{{staff_id}}/role` |
+    | `staff status update` | PATCH | `/admin/staff/{{staff_id}}/status` |
+    | `delete staff` | DELETE | `/admin/staff/delete/{{staff_id}}` |
+  type: text/markdown

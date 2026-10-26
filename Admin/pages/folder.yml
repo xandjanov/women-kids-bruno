@@ -1,0 +1,28 @@
+info:
+  name: pages
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Pages — statik sahifalar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/pages` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/pages/create` |
+    | `get all` | GET | `/pages/list` |
+    | `get by id` | GET | `/pages/detail/{{page_id}}` |
+    | `update` | PATCH | `/pages/update/{{page_id}}` |
+    | `delete` | DELETE | `/pages/delete/{{page_id}}` |
+    | `status update` | PATCH | `/pages/{{page_id}}/status` |
+  type: text/markdown

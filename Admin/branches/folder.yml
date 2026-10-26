@@ -1,0 +1,29 @@
+info:
+  name: branches
+  type: folder
+  seq: 16
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Branches — filiallar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/branches` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/branches/create` |
+    | `get all` | GET | `/branches/list` |
+    | `get by id` | GET | `/branches/detail/{{branch_id}}` |
+    | `update` | PATCH | `/branches/update/{{branch_id}}` |
+    | `delete` | DELETE | `/branches/delete/{{branch_id}}` |
+    | `status update` | PATCH | `/branches/{{branch_id}}/status` |
+    | `sort order` | PATCH | `/branches/sort-order` |
+  type: text/markdown

@@ -1,0 +1,86 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/pages/create"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: multipart-form
+    data:
+      - name: key
+        type: text
+        value: "about-us"
+      - name: title_oz
+        type: text
+        value: "Biz haqimizda"
+      - name: title_ru
+        type: text
+        value: "О нас"
+      - name: title_uz
+        type: text
+        value: "Биз ҳақимизда"
+      - name: title_en
+        type: text
+        value: "About us"
+      - name: short_content_oz
+        type: text
+        value: "Tashkilot haqida qisqa malumot"
+      - name: short_content_ru
+        type: text
+        value: "Краткая информация об организации"
+      - name: short_content_uz
+        type: text
+        value: "Ташкилот ҳақида қисқа маълумот"
+      - name: short_content_en
+        type: text
+        value: "Short info about the organization"
+      - name: content_oz
+        type: text
+        value: "<p>Toliq matn.</p>"
+      - name: content_ru
+        type: text
+        value: "<p>Полный текст.</p>"
+      - name: content_uz
+        type: text
+        value: "<p>Тўлиқ матн.</p>"
+      - name: content_en
+        type: text
+        value: "<p>Full text.</p>"
+      - name: options
+        type: text
+        value: ""
+      - name: status
+        type: text
+        value: "true"
+      - name: files
+        type: file
+        value: []
+        disabled: true
+      - name: lang
+        type: text
+        value: "oz"
+        disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  multipart/form-data.
+
+  MAJBURIY: key (max 155) - sahifaning unikal kaliti (masalan: about-us, contacts).
+  Takrorlansa 409 qaytadi.
+
+  Qolgan maydonlar ixtiyoriy.
+  files - rasm (jpg/jpeg/png/webp), har biri max 5MB, 100 tagacha.
+  lang  - har bir faylga til (oz|ru|uz|en|all), FAYL SONI BILAN TENG bolishi shart.
+  options - ixtiyoriy qoshimcha maydon (max 255).

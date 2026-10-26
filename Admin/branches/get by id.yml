@@ -1,0 +1,25 @@
+info:
+  name: get by id
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{base_url}}/branches/detail/{{branch_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  ID bo'yicha bitta filial — admin uchun HAMMA til maydonlari va HAMMA fayl bilan
+  (`title_oz`, `title_ru`, `address_oz`, `hall_oz`, ... va to'liq `files`).
+
+  Topilmasa 404, id raqam bo'lmasa 400.

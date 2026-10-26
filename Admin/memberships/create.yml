@@ -1,0 +1,64 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/memberships/create"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept-Language
+      value: oz
+  body:
+    type: json
+    data: |-
+      {
+        "group": "adultadults",
+        "title_oz": "Premium",
+        "title_ru": "Премиум",
+        "title_uz": "Премиум",
+        "title_en": "Premium",
+        "short_content_oz": "Oyiga 12 ta tashrif, hamma zallarga kirish",
+        "short_content_ru": "12 посещений в месяц, доступ во все залы",
+        "short_content_uz": "Ойига 12 та ташриф, ҳамма залларга кириш",
+        "short_content_en": "12 visits a month, access to all halls",
+        "price": 850000,
+        "old_price": 1000000,
+        "validity_days": 30,
+        "total_visits": 12,
+        "color": "#7C5CFC",
+        "icon": "crown",
+        "sort_order": 0,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Yangi tarif (abonement rejasi). JSON — fayl yuklamaydi.
+
+  | Maydon | Cheklov |
+  |---|---|
+  | `group` | **majburiy** — `adults` yoki `kids` |
+  | `title_oz/ru/uz/en` | max 255 |
+  | `short_content_oz/ru/uz/en` | cheklovsiz (text) |
+  | `price` | int64, >= 0 — so'mda |
+  | `old_price` | int64, >= 0 — chegirmagacha narx, `0` = chegirma yo'q |
+  | `validity_days` | int, >= 0 — abonement necha kun amal qiladi |
+  | `total_visits` | int, >= 0 — nechta tashrif beradi |
+  | `color` | max 255 — karta rangi |
+  | `icon` | max 255 |
+  | `sort_order` | int, standart 0 |
+  | `status` | bool, standart true |
+
+  DIQQAT: `validity_days` yoki `total_visits` `0` bo'lsa tarif **yaratiladi**,
+  lekin uni foydalanuvchiga biriktirib bo'lmaydi — `assign` 400 qaytaradi
+  (`membership_not_configured`). Qoralama tarifni shunday saqlab turish mumkin.

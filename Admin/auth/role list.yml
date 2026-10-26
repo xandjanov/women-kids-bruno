@@ -1,0 +1,23 @@
+info:
+  name: role list
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{base_url}}/admin/staff/roles"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Mavjud rollar ro'yxati. Faqat superadmin.
+  Javob: { roles: ["superadmin", "admin", "redactor"] }

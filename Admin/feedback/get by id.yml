@@ -1,0 +1,28 @@
+info:
+  name: get by id
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{base_url}}/feedback/detail/{{feedback_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  To'liq murojaat: `id`, `branch_id`, `branch_title`, `full_name`, `email`,
+  `phone`, `message`, `created_at`.
+
+  `branch_title` `Accept-Language` bo'yicha keladi (oz | ru | uz | en).
+  Topilmasa 404, id raqam bo'lmasa 400.
+
+  Ruxsat: `admin` va `superadmin`.

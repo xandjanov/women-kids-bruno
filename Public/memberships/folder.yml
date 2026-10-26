@@ -1,0 +1,23 @@
+info:
+  name: memberships
+  type: folder
+  seq: 12
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · memberships
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/memberships` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/memberships/list` |
+  type: text/markdown

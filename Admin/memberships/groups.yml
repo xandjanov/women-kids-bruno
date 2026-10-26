@@ -1,0 +1,38 @@
+info:
+  name: groups
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{base_url}}/memberships/groups"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Tarif guruhlari ro'yxati — kodni ochmasdan bilish uchun.
+
+  Javob:
+
+  ```json
+  {
+    "groups": ["adults", "kids"]
+  }
+  ```
+
+  | Guruh | Ma'nosi |
+  |---|---|
+  | `adults` | kattalar tarifi |
+  | `kids` | bolalar tarifi |
+
+  Shu qiymatlar `create`/`update` body'sida va `list`/`public list`
+  `?group=` filtrida ishlatiladi.

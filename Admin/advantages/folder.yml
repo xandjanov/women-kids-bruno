@@ -1,0 +1,29 @@
+info:
+  name: advantages
+  type: folder
+  seq: 8
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Advantages — afzalliklar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/advantages` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/advantages/create` |
+    | `get all` | GET | `/advantages/list` |
+    | `get by id` | GET | `/advantages/detail/{{advantage_id}}` |
+    | `update` | PATCH | `/advantages/update/{{advantage_id}}` |
+    | `delete` | DELETE | `/advantages/delete/{{advantage_id}}` |
+    | `status update` | PATCH | `/advantages/{{advantage_id}}/status` |
+    | `sort order` | PATCH | `/advantages/sort-order` |
+  type: text/markdown

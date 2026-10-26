@@ -1,0 +1,43 @@
+info:
+  name: file upload
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/coaches/{{coache_id}}/upload"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: multipart-form
+    data:
+      - name: files
+        type: file
+        value: []
+      - name: lang
+        type: text
+        value: "oz"
+        disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Mavjud murabbiy yozuviga rasm qo'shish.
+
+  Cheklovlar: jpg | jpeg | png | webp, har biri max 5MB, bitta so'rovda 100 tagacha.
+  Yozuvdagi jami fayl soni ham 100 dan oshmasligi kerak.
+
+  `lang` — har bir faylga til (oz|ru|uz|en|all). Yuborilsa FAYL SONI BILAN
+  TENG bo'lishi shart. Bo'sh yoki `all` = barcha tillarda ko'rinadi.
+
+  Birinchi yuklangan fayl avtomatik `is_main` bo'ladi (agar yozuvda fayl bo'lmasa).
+
+  Qolgan fayl amallari (is-main, o'chirish, tartiblash, til almashtirish)
+  `11-Media` papkasida — `table` env o'zgaruvchisini `coaches` ga qo'ying.

@@ -1,0 +1,29 @@
+info:
+  name: trial-benefits
+  type: folder
+  seq: 7
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # TrialBenefits — sinov imtiyozlari
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/trial-benefits` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/trial-benefits/create` |
+    | `get all` | GET | `/trial-benefits/list` |
+    | `get by id` | GET | `/trial-benefits/detail/{{trial_benefit_id}}` |
+    | `update` | PATCH | `/trial-benefits/update/{{trial_benefit_id}}` |
+    | `delete` | DELETE | `/trial-benefits/delete/{{trial_benefit_id}}` |
+    | `status update` | PATCH | `/trial-benefits/{{trial_benefit_id}}/status` |
+    | `sort order` | PATCH | `/trial-benefits/sort-order` |
+  type: text/markdown

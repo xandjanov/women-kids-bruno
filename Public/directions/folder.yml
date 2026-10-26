@@ -1,0 +1,23 @@
+info:
+  name: directions
+  type: folder
+  seq: 11
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · directions
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/directions` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/directions/list` |
+  type: text/markdown

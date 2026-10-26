@@ -1,0 +1,83 @@
+info:
+  name: get all
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{base_url}}/directions/list"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "10"
+      type: query
+    - name: group
+      value: "women"
+      type: query
+    - name: group
+      value: "kids"
+      type: query
+      disabled: true
+    - name: group
+      value: "women_and_kids"
+      type: query
+      disabled: true
+    - name: week
+      value: "5"
+      type: query
+    - name: week
+      value: "5,6"
+      type: query
+      disabled: true
+    - name: week
+      value: "0"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+          bru.setEnvVar("direction_id", res.body.items[0].id);
+        }
+
+docs: |-
+  Admin ro'yxati, `sort_order ASC, id ASC` tartibida. limit: 1..100, standart 10.
+
+  **Asosiy filtr — `group` va `week`.** Ikkisi birga ishlatilsa `VA` bog'lanadi.
+
+  | So'rov | Natija |
+  |---|---|
+  | `?page=1&limit=10` | hamma yo'nalish (ikkala filtrni o'chirsangiz) |
+  | `?group=women` | faqat ayollar yo'nalishlari |
+  | `?week=5` | juma kuni bor yo'nalishlar |
+  | `?week=5,6` | juma YOKI shanba kuni bor yo'nalishlar |
+  | `?week=5&week=6` | yuqoridagi bilan bir xil natija |
+  | `?group=women&week=5` | ayollar yo'nalishi VA juma kuni bor |
+  | `?week=8` yoki `?week=abc` | `400` + tarjimali xato |
+  | `?group=xxx` | `400` + tarjimali xato |
+
+  `week` filtri **kesishma** bo'yicha ishlaydi: yozuvning kunlari ichida
+  so'ralgan kunlardan **kamida bittasi** bo'lsa, yozuv natijaga tushadi.
+  Ya'ni `[0,1,3]` kunlari bor yozuv `?week=3,6` so'roviga ham javob beradi.
+
+  `total` ham filtrga mos keladi — sahifalash to'g'ri ishlaydi.
+
+  Til `Accept-Language` bo'yicha — har element `title`, `short_content`, `age`
+  maydonlari bilan, yonida `group` va `week` massivi ham qaytadi.
+  `files` da faqat asosiy rasm (`is_main`) qaytariladi.
+  Birinchi elementning `id`si `directionId` env o'zgaruvchisiga yoziladi.

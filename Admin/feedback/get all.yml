@@ -1,0 +1,54 @@
+info:
+  name: get all
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{base_url}}/feedback/list"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "10"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+          bru.setEnvVar("feedback_id", res.body.items[0].id);
+        }
+
+docs: |-
+  Admin ro'yxati — eng yangi murojaat yuqorida (`created_at DESC`).
+
+  Har bir element:
+
+  | Maydon | Nima |
+  |---|---|
+  | `id` | murojaat ID |
+  | `branch_id` | qaysi filial (`0` = filial tanlanmagan) |
+  | `branch_title` | **shu filialning nomi** — `Accept-Language` bo'yicha |
+  | `full_name` | murojaat qilgan shaxs |
+  | `created_at` | qachon yuborilgan |
+
+  `branch_title` filiallar jadvalidan LEFT JOIN bilan olinadi, shuning uchun
+  admin qaysi filialga murojaat kelganini ro'yxatdan turib ko'radi.
+  Filial o'chirilgan yoki tanlanmagan bo'lsa `branch_title` bo'sh satr.
+
+  To'liq matn (`message`, `email`, `phone`) uchun Detail so'rovidan foydalaning.
+  Ruxsat: `admin` va `superadmin`.

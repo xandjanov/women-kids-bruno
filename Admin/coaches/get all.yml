@@ -1,0 +1,66 @@
+info:
+  name: get all
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{base_url}}/coaches/list"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "10"
+      type: query
+    - name: group
+      value: "women"
+      type: query
+    - name: group
+      value: "kids"
+      type: query
+      disabled: true
+    - name: group
+      value: "women_and_kids"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 && res.body && res.body.items && res.body.items.length) {
+          bru.setEnvVar("coache_id", res.body.items[0].id);
+        }
+
+docs: |-
+  Admin ro'yxati, `sort_order ASC, id ASC` tartibida. limit: 1..100, standart 10.
+
+  **`group` bilan filtrlash** — params ro'yxatida uchta guruh tayyor turadi,
+  faqat bittasi yoqilgan. Kerakligini belgilab, qolganini o'chirib qo'ying:
+
+  | So'rov | Natija |
+  |---|---|
+  | `?page=1&limit=10` | hamma guruh (group'ni butunlay o'chirsangiz) |
+  | `?group=women` | faqat ayollar murabbiylari |
+  | `?group=kids` | faqat bolalar murabbiylari |
+  | `?group=women_and_kids` | ikkisiga ham tegishli murabbiylar |
+  | `?group=xxx` | `400` + tarjima qilingan xato |
+
+  `total` ham filtrga mos keladi — sahifalash to'g'ri ishlaydi.
+
+  Til `Accept-Language` bo'yicha — har element `title` va `short_content`
+  maydonlari bilan, yonida `group` va `coache_category_id` ham qaytadi.
+  `files` da faqat asosiy rasm (`is_main`) qaytariladi.
+  Birinchi elementning `id`si `coacheId` env o'zgaruvchisiga yoziladi.

@@ -1,0 +1,25 @@
+info:
+  name: menu media
+  type: folder
+  seq: 99
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # menu media
+
+    `menu` uchun fayl amallari.
+
+    Yangi fayllar mavjudlariga **qo'shiladi** (almashtirmaydi).
+    `file is-main` muqova rasmni belgilaydi — ro'yxatlarda faqat shu qaytadi.
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `file upload` | POST | `/menu/{{menu_id}}/upload` |
+    | `file is-main` | PATCH | `/menu/{{menu_id}}/files/{{file_id}}/is-main` |
+    | `file lang` | POST | `/menu/image/{{menu_id}}/lang/{{file_id}}` |
+    | `file sort order` | PATCH | `/menu/{{menu_id}}/files/sort-order` |
+    | `file delete` | DELETE | `/menu/{{menu_id}}/files/{{file_id}}/delete` |
+  type: text/markdown

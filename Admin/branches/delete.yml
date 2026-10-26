@@ -1,0 +1,23 @@
+info:
+  name: delete
+  type: http
+  seq: 7
+
+http:
+  method: DELETE
+  url: "{{base_url}}/branches/delete/{{branch_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Filialni o'chiradi — yuklangan rasmlari ham diskdan o'chadi.
+  Topilmasa 404.

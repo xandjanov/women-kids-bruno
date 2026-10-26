@@ -1,0 +1,47 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/socials/update/{{social_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Telegram kanal",
+        "title_ru": "Telegram канал",
+        "title_uz": "Телеграм канал",
+        "title_en": "Telegram channel",
+        "short_content_oz": "Kundalik jadval va chegirmalar e'loni.",
+        "short_content_ru": "Ежедневное расписание и анонсы скидок.",
+        "short_content_uz": "Кундалик жадвал ва чегирмалар эълони.",
+        "short_content_en": "Daily schedule and discount announcements.",
+        "icon": "telegram",
+        "options": "header",
+        "link": "https://t.me/example_new",
+        "sort_order": 1,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Qisman yangilash — faqat yuborilgan maydonlar o'zgaradi, qolgani joyida qoladi.
+  Create ham, update ham JSON.
+
+  Maydonlar va cheklovlar `Social Create` bilan bir xil.
+  Bo'sh satr (`""`) yuborilsa maydon bo'shatiladi — yuborilmasa tegilmaydi.
+  Yozuv topilmasa tarjimali 404, id raqam bo'lmasa 400.

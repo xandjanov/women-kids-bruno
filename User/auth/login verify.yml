@@ -1,0 +1,54 @@
+info:
+  name: login verify
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{base_url}}/user/login/verify"
+  headers:
+    - name: Accept-Language
+      value: oz
+    - name: X-Device-Id
+      value: "{{device_id}}"
+      disabled: true
+    - name: X-Device-Name
+      value: "{{device_name}}"
+      disabled: true
+    - name: X-Device-Platform
+      value: "{{device_platform}}"
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "phone": "{{user_phone}}",
+        "code": "{{user_code}}"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 && res.body && res.body.token) {
+          bru.setEnvVar("user_token", res.body.token);
+          bru.setEnvVar("user_id", res.body.user.id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Kirishning 2-qadami: kod tasdiqlanadi va token beriladi (`200`).
+
+  Javobda `token`, `expires_at` va `user` keladi; token `userToken` ga yoziladi.
+  Token 24 soat yashaydi va `user_sessions` jadvalidagi qator bilan bog'langan —
+  logout qilinsa yoki sessiya bekor qilinsa darhol ishlamay qoladi.
+
+  Xatolar `Register Verify` bilan bir xil: noto'g'ri kod, urinishlar tugashi,
+  muddat tugashi. Bundan tashqari foydalanuvchi bloklangan bo'lsa `403`.

@@ -1,0 +1,26 @@
+info:
+  name: delete
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: "{{base_url}}/feedback/delete/{{feedback_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Murojaatni o'chiradi. Topilmasa 404.
+
+  **Ruxsat: FAQAT `superadmin`.**
+  `admin` roli bilan yuborilsa `403` qaytadi — list va detail esa `admin` uchun
+  ham ochiq. Bu yagona joy, bu yerda admin va superadmin huquqi farq qiladi.

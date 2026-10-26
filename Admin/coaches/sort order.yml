@@ -1,0 +1,35 @@
+info:
+  name: sort order
+  type: http
+  seq: 9
+
+http:
+  method: PATCH
+  url: "{{base_url}}/coaches/sort-order"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "sort_order": [{{coache_id}}]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Global yozuvlar tartiblash funksiyasi.
+  Bir nechta mavjud IDni kerakli tartibda yuboring, masalan [3, 1, 2].
+  Tanlanmagan yozuvlar o'z o'rnida qoladi. Bitta ID tartibni o'zgartirmaydi.
+  Takroriy ID 400, mavjud bo'lmagan ID 404 qaytaradi.
+
+  Tartiblash guruhdan qat'i nazar ishlaydi — `sort_order` global maydon.

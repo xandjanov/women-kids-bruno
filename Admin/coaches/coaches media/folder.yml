@@ -1,0 +1,25 @@
+info:
+  name: coaches media
+  type: folder
+  seq: 99
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # coaches media
+
+    `coaches` uchun fayl amallari.
+
+    Yangi fayllar mavjudlariga **qo'shiladi** (almashtirmaydi).
+    `file is-main` muqova rasmni belgilaydi — ro'yxatlarda faqat shu qaytadi.
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `file upload` | POST | `/coaches/{{coache_id}}/upload` |
+    | `file is-main` | PATCH | `/coaches/{{coache_id}}/files/{{file_id}}/is-main` |
+    | `file lang` | POST | `/coaches/image/{{coache_id}}/lang/{{file_id}}` |
+    | `file sort order` | PATCH | `/coaches/{{coache_id}}/files/sort-order` |
+    | `file delete` | DELETE | `/coaches/{{coache_id}}/files/{{file_id}}/delete` |
+  type: text/markdown

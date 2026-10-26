@@ -1,0 +1,256 @@
+opencollection: 1.0.0
+
+info:
+  name: WK API
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  auth:
+    type: bearer
+    token: "{{token}}"
+  variables:
+    - name: staff_id
+      value: "37"
+    - name: session_id
+      value: "299"
+    - name: page_id
+      value: "1"
+    - name: social_id
+      value: "2"
+    - name: menu_id
+      value: "9"
+    - name: menu_slug
+      value: biz-haqimizda
+    - name: feature_id
+      value: "16"
+    - name: metric_id
+      value: "1"
+    - name: coache_category_id
+      value: "1"
+    - name: coache_id
+      value: "1"
+    - name: direction_id
+      value: "1"
+    - name: membership_id
+      value: "1"
+    - name: user_membership_id
+      value: "1"
+    - name: family_member_id
+      value: "1"
+    - name: qr_code_token
+      value: ""
+    - name: user_session_id
+      value: "1"
+    - name: trial_benefit_id
+      value: "1"
+    - name: advantage_id
+      value: "1"
+    - name: onboarding_step_id
+      value: "1"
+    - name: branch_id
+      value: "17"
+    - name: trial_offer_id
+      value: "1"
+    - name: useful_id
+      value: "1"
+    - name: feedback_id
+      value: "8"
+    - name: user_id
+      value: "3"
+    - name: table
+      value: pages
+    - name: record_id
+      value: "1"
+    - name: file_id
+      value: "1"
+    - name: user_full_name
+      value: Mother
+    - name: user_phone
+      value: "998901234567"
+    - name: user_code
+      value: "1234"
+    - name: device_id
+      value: bruno-desktop-0001
+    - name: device_name
+      value: Bruno / Windows
+    - name: device_platform
+      value: web
+
+docs:
+  content: |-
+    # WK API — Go (Gin) + Bun + PostgreSQL
+
+    Ayollar va bolalar uchun fitnes klubi backendi. **Har bir so'rovning o'z hujjati bor** —
+    so'rovni ochib, o'ng tarafdagi hujjat panelini oching.
+
+    ---
+
+    ## Boshlash
+    1. Yuqori o'ng burchakdan **`WK Api`** environment'ini tanlang.
+    2. **`Admin / auth / login`** ni yuboring — token avtomatik `token` ga yoziladi.
+    3. Sayt foydalanuvchisi uchun: **`User / auth / register verify`** yoki **`login verify`** —
+       ular `user_token` ni yozadi.
+
+    Boshqa hech narsa sozlash shart emas.
+
+    ## Uchta ildiz papka
+    | Papka | Kim | Bazasi | Token |
+    |---|---|---|---|
+    | `Admin` | xodimlar (superadmin / admin / redactor) | `{{base_url}}` | `{{token}}` |
+    | `Public` | sayt mehmoni | `{{public_url}}` | kerak emas |
+    | `User` | sayt foydalanuvchisi | `{{base_url}}` | `{{user_token}}` |
+
+    > `base_url` ichida **`/api/v1`** bor, shuning uchun so'rovlarda `{{base_url}}/pages/list` deb yoziladi.
+    > Public route'lar `/api/v1` ostida emas — ular `{{public_url}}/public/...` ni ishlatadi.
+
+    ## Ikki xil token
+    Kolleksiya darajasida **Bearer `{{token}}`** qo'yilgan — `Admin` papkasi shuni meros oladi.
+    `User` papkasi esa o'z darajasida **Bearer `{{user_token}}`** ga o'rnatilgan.
+    Staff tokeni user endpointlariga kirmaydi, user tokeni admin endpointlariga kirmaydi — ikkisi ham `401`.
+
+    ## Til
+    Barcha so'rovlarda `Accept-Language: oz` header qo'yilgan.
+
+    | Qiymat | Til |
+    |---|---|
+    | `oz` | O'zbek — **lotin**. Server default va fallback |
+    | `uz` | O'zbek — **kirill** |
+    | `ru` | Rus |
+    | `en` | Ingliz |
+
+    Header ham javob xabarlariga (`message` / `error`), ham kontent tiliga ta'sir qiladi.
+
+    ## Rollar
+    | Rol | Ruxsat |
+    |---|---|
+    | `superadmin` | hammasi + xodimlarni boshqarish + `feedback / delete` |
+    | `admin` | barcha kontent CRUD, media, status, sort order |
+    | `redactor` | faqat `Admin / auth/*` (o'z profili va sessiyalari) |
+
+    ## Har modul papkasidagi standart so'rovlar
+    `create` · `get all` · `get by id` · `update` · `delete` · `status update` · `sort order`
+
+    Guruhli modellarda qo'shimcha `groups`, fayl saqlaydiganlarda
+    `<modul> media` ichki papkasi:
+    `file upload` · `file is-main` · `file lang` · `file sort order` · `file delete`
+
+    ## Body formatlari
+    | Format | Modellar |
+    |---|---|
+    | `multipart/form-data` | pages, menu, branches, usefuls, coaches, directions |
+    | `application/json` | qolgan hammasi |
+
+    > ⚠️ Bu jadval **`create`** uchun. **Barcha `update` so'rovlari — `application/json`**,
+    > hatto `create` i form-data bo'lgan modellarda ham.
+
+    ## Sahifalash
+    | Parametr | Default | Chegara |
+    |---|---|---|
+    | `page` | 1 | `< 1` bo'lsa 1 |
+    | `limit` | 10 | `< 1` yoki `> 100` bo'lsa 10 |
+
+    ## Umumiy javob shakllari
+    **Muvaffaqiyat:**
+    ```json
+    { "status": 200, "message": "..." }
+    ```
+    **Xato:**
+    ```json
+    { "status": 400, "error": "..." }
+    ```
+    **Ro'yxat:**
+    ```json
+    { "items": [], "total": 0, "page": 1, "limit": 10 }
+    ```
+
+    ## Fayl obyekti
+    ```json
+    {
+      "id": 1,
+      "size": 154238,
+      "ext": "jpg",
+      "path": "uploads/1754212345678-a1b2c3d4.jpg",
+      "url": "/uploads/1754212345678-a1b2c3d4.jpg",
+      "is_main": true,
+      "sort_order": 0,
+      "lang": ""
+    }
+    ```
+    To'liq manzil: **`{{public_url}}`** + `url`.
+
+    ## Abonement oqimi
+    | # | So'rov | Natija |
+    |---|---|---|
+    | 1 | `Admin / memberships / create` | tarif yaratiladi (`validity_days`, `total_visits`) |
+    | 2 | `User / family-members / create` | foydalanuvchi farzandini qo'shadi |
+    | 3 | `Admin / user-memberships / assign` | tarif biriktiriladi, QR token beriladi |
+    | 4 | `User / memberships / get all` | profildagi kartalar |
+    | 5 | `Admin / user-memberships / check-in (qr)` | qabulxona tashrifni yechadi |
+    | 6 | `Admin / attendance / get all` | tashriflar tarixi |
+
+    ## Fayl yuklash va `_samples/`
+    `_samples/sample.png` — haqiqiy 1×1 PNG, 70 bayt. **O'chirmang.**
+    Bruno'da multipart fayl qatori haqiqiy fayl yo'lini talab qiladi; namuna fayl
+    kolleksiya bilan birga ko'chadi, shuning uchun boshqa kompyuterda import
+    qilsangiz ham `file upload` so'rovlari darhol ishlaydi.
+
+    `create` so'rovlarida fayl qatori `~` bilan **o'chirilgan** (fayl ixtiyoriy),
+    `<modul> media / file upload` da esa **yoqilgan** (fayl majburiy).
+
+    `lang` qatorini yoqsangiz, uning soni fayllar soniga **teng** bo'lishi shart,
+    aks holda `400`.
+
+    ## Qurilmalar va sessiyalar
+    Sessiya **tokenga emas, qurilmaga** bog'langan: bir foydalanuvchi + bir qurilma
+    uchun faqat bitta qator. O'sha qurilmadan qayta login qilinsa eski qator
+    o'rniga yangisi yoziladi va **eski token darhol ishlamay qoladi**.
+
+    | Header | Qiymat | Kim yuboradi |
+    |---|---|---|
+    | `X-Device-Id` | barqaror UUID | mobil app — **shart**; web — tavsiya |
+    | `X-Device-Name` | `iPhone 15 Pro` | mobil app |
+    | `X-Device-Platform` | `web` \| `android` \| `ios` | mobil app |
+
+    `X-Device-Id` mijozda bir marta yasaladi va doimiy saqlanadi (iOS — Keychain,
+    Android — DataStore, Web — localStorage). Server uni `sha256` qilib saqlaydi.
+
+    Header yuborilmasa qurilma `User-Agent` barmoq izi bo'yicha aniqlanadi — web
+    uchun yetarli, lekin mobil ilovada OS yangilansa telefon **yangi qurilma**
+    bo'lib ko'rinadi. IP ishlatilmaydi.
+
+    ```
+    login                      -> o'sha qurilmaning eski sessiyasi almashtiriladi
+    sessions list              -> qurilmalar ro'yxati (device_name, platform, last_seen_at)
+    session revoke             -> tanlangan qurilmani chiqarib yuborish
+    logout / logout all        -> joriy / boshqa barcha qurilmalar
+    ```
+
+    Parol almashsa yoki hisob `status: false` qilinsa — **barcha** sessiyalar o'chadi.
+    `last_seen_at` 5 daqiqada bir marta yangilanadi.
+
+    ## Parol — bcrypt bo'lishi SHART
+    `staffs.password` da faqat **bcrypt hash** turishi kerak (60 belgi, `$2a$`).
+    Bazaga SQL orqali ochiq matn parol yozsangiz login doim `401` qaytaradi.
+    Yangi xodimni **har doim API orqali** yarating: `Admin / auth / create staff`.
+
+    ## Eslatma: port
+    `.env` da `APP_PORT=:8000`. XAMPP PHP serveri ham `127.0.0.1:8000` ni egallashi
+    mumkin — u holda so'rovlar PHP'ning 404 sahifasiga tushadi. Portni almashtirsangiz
+    environment'dagi `base_url` va `public_url` ni ham moslang.
+  type: text/markdown
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

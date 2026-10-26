@@ -1,0 +1,30 @@
+info:
+  name: User
+  type: folder
+  seq: 3
+
+request:
+  auth:
+    type: bearer
+    token: "{{user_token}}"
+
+docs:
+  content: |-
+    # User — sayt foydalanuvchisi
+
+    Staff'dan **butunlay alohida tizim**: o'z jadvali (`users`), o'z sessiyalari
+    (`user_sessions`) va o'z tokeni bor. Staff tokeni bu endpointlarga kirmaydi,
+    user tokeni admin endpointlariga kirmaydi — ikkisi ham `401`.
+
+    Bu papka **`{{user_token}}`** ni ishlatadi (folder darajasida qo'yilgan),
+    `{{token}}` ni emas. `User / auth / register verify` yoki `login verify`
+    uni avtomatik yozadi.
+
+    Parol yo'q — kirish 4 xonali **SMS kod** bilan. SMS provayder ulanmagani uchun
+    kod doim `1234` va javobda `code` bo'lib qaytadi.
+
+    ## Akkaunt boshqaruvi staff bilan deyarli bir xil
+    Yagona farq: user **o'z akkauntini o'chira oladi** (`delete account`),
+    staff'da bunday endpoint yo'q.
+
+  type: text/markdown

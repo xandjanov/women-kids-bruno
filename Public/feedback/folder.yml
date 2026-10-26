@@ -1,0 +1,26 @@
+info:
+  name: feedback
+  type: folder
+  seq: 16
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · feedback
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/feedback` |
+    | **Rol** | token kerak emas |
+
+    Ochiq murojaat `Public / feedback / create` orqali keladi.
+    Bu yerda faqat ko'rish va o'chirish (`delete` — **superadmin**).
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/public/feedback/create` |
+  type: text/markdown

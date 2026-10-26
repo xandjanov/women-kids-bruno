@@ -1,0 +1,27 @@
+info:
+  name: menu
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · menu
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/menu` |
+    | **Rol** | token kerak emas |
+
+    `sort order` menyuning **o'z** endpointi (`/menu/sort-order`), global `:table` dan farq qiladi.
+    `get all (flat)` — `cat_id` select uchun tekis ro'yxat.
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/menu/list` |
+    | `get by slug` | GET | `/public/menu/{{menu_slug}}` |
+  type: text/markdown

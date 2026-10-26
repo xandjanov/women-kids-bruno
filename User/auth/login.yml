@@ -1,0 +1,50 @@
+info:
+  name: login
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{base_url}}/user/login"
+  headers:
+    - name: Accept-Language
+      value: oz
+  body:
+    type: json
+    data: |-
+      {
+        "full_name": "{{user_full_name}}",
+        "phone": "{{user_phone}}"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 && res.body && res.body.code) {
+          bru.setEnvVar("user_code", res.body.code);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Kirishning 1-qadami: `full_name` va `phone` JUFTLIGI bo'yicha foydalanuvchi
+  qidiriladi, topilsa o'sha telefonga yangi 4 xonali kod ketadi.
+
+  Ikkala maydon ham majburiy — faqat telefon yoki faqat ism bilan kirilmaydi.
+  Ism katta-kichik harfga sezgir emas, telefon formati erkin.
+
+  | Xato | Sabab |
+  |---|---|
+  | `404` foydalanuvchi topilmadi | ism va telefon juftligi mos kelmadi |
+  | `403` bloklangan | `status: false` qilib qo'yilgan |
+  | `400` telefon formati noto'g'ri | |
+  | `429` 60 sekund o'tmagan | kodni qayta so'rashdan oldin kuting |
+
+  Dev rejimda javobdagi `code` `userCode` ga yoziladi.

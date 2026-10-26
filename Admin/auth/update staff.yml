@@ -1,0 +1,37 @@
+info:
+  name: update staff
+  type: http
+  seq: 9
+
+http:
+  method: PATCH
+  url: "{{base_url}}/admin/staff/update/{{staff_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "redactor1",
+        "email": "redactor1.new@wk.local",
+        "password": "NewPass@123",
+        "role": "admin",
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Qisman yangilash — faqat yuborilgan maydonlar o'zgaradi, barchasi ixtiyoriy.
+
+  Diqqat: `role` yoki `status`ni O'ZINGIZGA o'zgartirsangiz 403 qaytadi.
+  `password` o'zgarsa yoki `status: false` bo'lsa — shu staff'ning hamma sessiyasi o'chadi.

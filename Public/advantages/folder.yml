@@ -1,0 +1,23 @@
+info:
+  name: advantages
+  type: folder
+  seq: 7
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · advantages
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/advantages` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/advantages/list` |
+  type: text/markdown

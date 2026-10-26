@@ -1,0 +1,55 @@
+info:
+  name: get all
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{public_url}}/public/directions/list"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  params:
+    - name: group
+      value: "women"
+      type: query
+    - name: group
+      value: "kids"
+      type: query
+      disabled: true
+    - name: group
+      value: "women_and_kids"
+      type: query
+      disabled: true
+    - name: week
+      value: "5"
+      type: query
+    - name: week
+      value: "5,6"
+      type: query
+      disabled: true
+    - name: week
+      value: "0"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Ochiq (token kerak emas). Faqat `status: true` yozuvlar,
+  `sort_order ASC, id ASC` tartibida — bu endpoint sahifalamaydi.
+
+  Filtrlar admin `list` bilan bir xil ishlaydi: `?group=`, `?week=`
+  (vergul bilan yoki takrorlangan parametr), ikkisi birga `VA` bog'lanadi.
+  Ikkala filtrni o'chirsangiz hamma aktiv yo'nalish qaytadi.
+
+  Til `Accept-Language` bilan: oz | ru | uz | en (standart oz) —
+  javobda `title`, `short_content`, `age` shu tilda qaytadi.
+  `group`, `week`, `sort_order`, `status`, `created_at` ham bor.
+  `files` da shu tilga tegishli va tili belgilanmagan rasmlar qaytariladi.

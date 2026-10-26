@@ -1,0 +1,39 @@
+info:
+  name: groups
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{base_url}}/coaches/groups"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Ruxsat etilgan guruhlar ro'yxati — kodni ochib ko'rmasdan bilish uchun.
+
+  Javob:
+
+  ```json
+  {
+    "groups": ["women", "kids", "women_and_kids"]
+  }
+  ```
+
+  | Guruh | Ma'nosi |
+  |---|---|
+  | `women` | faqat ayollar bilan ishlaydigan murabbiy |
+  | `kids` | faqat bolalar bilan ishlaydigan murabbiy |
+  | `women_and_kids` | ikkisini ham o'z ichiga oladi |
+
+  Shu qiymatlar `create`/`update` body'sida va `list`/`public list`
+  `?group=` filtrida ishlatiladi.

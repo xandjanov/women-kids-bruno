@@ -1,0 +1,29 @@
+info:
+  name: trial-offers
+  type: folder
+  seq: 17
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # TrialOffers — sinov takliflari
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/trial-offers` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/trial-offers/create` |
+    | `get all` | GET | `/trial-offers/list` |
+    | `get by id` | GET | `/trial-offers/detail/{{trial_offer_id}}` |
+    | `update` | PATCH | `/trial-offers/update/{{trial_offer_id}}` |
+    | `delete` | DELETE | `/trial-offers/delete/{{trial_offer_id}}` |
+    | `status update` | PATCH | `/trial-offers/{{trial_offer_id}}/status` |
+    | `sort order` | PATCH | `/trial-offers/sort-order` |
+  type: text/markdown

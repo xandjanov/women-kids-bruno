@@ -1,0 +1,23 @@
+info:
+  name: onboarding-steps
+  type: folder
+  seq: 8
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · onboarding-steps
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/onboarding-steps` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/onboarding-steps/list` |
+  type: text/markdown

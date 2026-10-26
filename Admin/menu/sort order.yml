@@ -1,0 +1,34 @@
+info:
+  name: sort order
+  type: http
+  seq: 9
+
+http:
+  method: PATCH
+  url: "{{base_url}}/menu/sort-order"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "sort_order": [3, 1, 2]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Menyularni qayta tartiblash. Massivdagi ID'lar yangi tartibda beriladi.
+
+  - takroriy ID bo'lsa 400
+  - mavjud bo'lmagan ID bo'lsa 404
+  - massiv bo'sh bo'lmasligi kerak (min 1)

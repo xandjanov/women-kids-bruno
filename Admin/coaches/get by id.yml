@@ -1,0 +1,24 @@
+info:
+  name: get by id
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{base_url}}/coaches/detail/{{coache_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  ID bo'yicha bitta yozuv — admin uchun HAMMA til maydonlari va HAMMA fayl bilan.
+  `group`, `coache_category_id`, `sort_order`, `status` ham qaytadi.
+  Topilmasa 404, id raqam bo'lmasa 400.

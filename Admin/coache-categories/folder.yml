@@ -1,0 +1,28 @@
+info:
+  name: coache-categories
+  type: folder
+  seq: 10
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # CoacheCategories — murabbiy kategoriyalari
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/coache-categories` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/coache-categories/create` |
+    | `get all` | GET | `/coache-categories/list` |
+    | `get by id` | GET | `/coache-categories/detail/{{coache_category_id}}` |
+    | `update` | PATCH | `/coache-categories/update/{{coache_category_id}}` |
+    | `delete` | DELETE | `/coache-categories/delete/{{coache_category_id}}` |
+    | `status update` | PATCH | `/coache-categories/{{coache_category_id}}/status` |
+  type: text/markdown

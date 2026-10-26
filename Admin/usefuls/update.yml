@@ -1,0 +1,36 @@
+info:
+  name: update
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/usefuls/update/{{useful_id}}"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "title_oz": "Davlat portali (yangilangan)",
+        "title_ru": "Государственный портал (обновлено)",
+        "title_uz": "Давлат портали (янгиланган)",
+        "title_en": "Government portal (updated)",
+        "sort_order": 1,
+        "status": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  **JSON** (multipart EMAS) — faqat yuborilgan maydonlar o'zgaradi.
+  Fayl qo'shish/o'chirish uchun `11-Media` papkasidan foydalaning.

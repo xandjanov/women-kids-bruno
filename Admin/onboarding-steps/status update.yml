@@ -1,0 +1,31 @@
+info:
+  name: status update
+  type: http
+  seq: 8
+
+http:
+  method: PATCH
+  url: "{{base_url}}/onboarding-steps/{{onboarding_step_id}}/status"
+  headers:
+    - name: Content-Type
+      value: "application/json"
+    - name: Accept-Language
+      value: "oz"
+  body:
+    type: json
+    data: |-
+      {
+        "status": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Global status funksiyasi. false yozuvni public ro'yxatdan yashiradi,
+  true qayta ko'rsatadi. `status` majburiy, yozuv topilmasa 404.

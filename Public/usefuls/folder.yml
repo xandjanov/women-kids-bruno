@@ -1,0 +1,23 @@
+info:
+  name: usefuls
+  type: folder
+  seq: 15
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # public · usefuls
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{public_url}}/public/usefuls` |
+    | **Rol** | token kerak emas |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/public/usefuls/list` |
+  type: text/markdown

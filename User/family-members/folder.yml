@@ -1,0 +1,30 @@
+info:
+  name: family-members
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # FamilyMembers — oila a'zolari
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/family-members` |
+    | **Rol** | `{{user_token}}` — sayt foydalanuvchisi |
+
+    Foydalanuvchi o'z farzandlarini boshqaradi. `user_id` tokendan olinadi.
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `relationships` | GET | `/user/family-members/relationships` |
+    | `create` | POST | `/user/family-members/create` |
+    | `get all` | GET | `/user/family-members/list` |
+    | `get by id` | GET | `/user/family-members/detail/{{family_member_id}}` |
+    | `update` | PATCH | `/user/family-members/update/{{family_member_id}}` |
+    | `delete` | DELETE | `/user/family-members/delete/{{family_member_id}}` |
+  type: text/markdown

@@ -1,0 +1,23 @@
+info:
+  name: memberships
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Memberships — abonement tariflari
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/memberships` |
+    | **Rol** | `{{user_token}}` — sayt foydalanuvchisi |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `get all` | GET | `/user/memberships` |
+  type: text/markdown

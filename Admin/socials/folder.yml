@@ -1,0 +1,29 @@
+info:
+  name: socials
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Socials — ijtimoiy tarmoqlar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/socials` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `create` | POST | `/socials/create` |
+    | `get all` | GET | `/socials/list` |
+    | `get by id` | GET | `/socials/detail/{{social_id}}` |
+    | `update` | PATCH | `/socials/update/{{social_id}}` |
+    | `delete` | DELETE | `/socials/delete/{{social_id}}` |
+    | `status update` | PATCH | `/socials/{{social_id}}/status` |
+    | `sort order` | PATCH | `/socials/sort-order` |
+  type: text/markdown

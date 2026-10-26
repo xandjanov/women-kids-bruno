@@ -1,0 +1,47 @@
+name: WK Api
+color: "#7C5CFC"
+variables:
+  - name: base_url
+    value: http://localhost:8000/api/v1
+  - name: public_url
+    value: http://localhost:8000
+  - name: token
+    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGFmZl9pZCI6MzcsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsInJvbGUiOiJzdXBlcmFkbWluIiwiZXhwIjoxNzkyOTE1NzYxLCJpYXQiOjE3OTI4MjkzNjEsImp0aSI6IldFVk1UNkw3WENGTzRPTUc1NFdJNEY1N09EIn0.hzl4-6GXEsegZf97rLMjvBlyvbEVRKpoBZ8i979wiC0
+  - name: user_token
+    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwicGhvbmUiOiI5OTg5MDEyMzQ1NjciLCJleHAiOjE3OTI5MzY0MjIsImlhdCI6MTc5Mjg1MDAyMiwianRpIjoiUEZRR1FOUUszSlVKM1RZUjRFS0xGREhYUE8ifQ.XLSoyw6MJfLNXk1tnrk4Jv8-kmCSiYfmbmOxafgNu44
+  - name: staff_id
+    value:
+      type: number
+      data: "37"
+  - name: session_id
+    value:
+      type: number
+      data: "310"
+  - name: user_code
+    value: "1234"
+  - name: user_id
+    value:
+      type: number
+      data: "11"
+  - name: family_member_id
+    value:
+      type: number
+      data: "2"
+  - name: membership_id
+    value:
+      type: number
+      data: "3"
+  - name: user_membership_id
+    value:
+      type: number
+      data: "4"
+  - name: qr_code_token
+    value: IBBARKUI5VQAS2M7RDZPKT4WRF
+  - name: user_session_id
+    value:
+      type: number
+      data: "18"
+  - name: branch_id
+    value:
+      type: number
+      data: "17"

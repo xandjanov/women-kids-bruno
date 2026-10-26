@@ -1,0 +1,26 @@
+info:
+  name: cancel
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{base_url}}/user-memberships/cancel/{{user_membership_id}}"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Abonementni bekor qiladi — `status` `cancelled` bo'ladi.
+  Yozuv o'chmaydi, tashriflar tarixi saqlanib qoladi, lekin QR kod
+  endi ishlamaydi (`membership_inactive`) va profil kartalaridan yo'qoladi.
+
+  Topilmasa `404`.

@@ -1,0 +1,40 @@
+info:
+  name: delete account
+  type: http
+  seq: 13
+
+http:
+  method: DELETE
+  url: "{{base_url}}/user/delete"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  **Foydalanuvchi o'z akkauntini butunlay o'chiradi.** Staff'da bunday
+  endpoint YO'Q — bu userlarning staff'dan asosiy farqi.
+
+  Bitta tranzaksiyada o'chadi:
+
+  | Jadval | Nima bo'ladi |
+  |---|---|
+  | `users` | yozuv o'chadi |
+  | `user_sessions` | hamma qurilmadagi sessiya o'chadi — token darhol `401` |
+  | `family_members` | farzandlari o'chadi |
+  | `user_memberships` | biriktirilgan abonementlari o'chadi |
+  | `user_otps` | shu raqamga yuborilgan kodlar o'chadi |
+  | `uploads/...` | profil rasmi diskdan o'chadi |
+  | `attendance_logs` | **qoladi** — zalga tashriflar tarixi klub statistikasi uchun saqlanadi |
+
+  Qaytarib bo'lmaydi. Ilovada albatta tasdiqlash oynasi bilan ishlating.
+
+  Shundan keyin o'sha telefon raqami bilan qaytadan `Register`
+  qilish mumkin — yangi, bo'sh akkaunt ochiladi.

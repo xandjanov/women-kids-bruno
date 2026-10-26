@@ -1,0 +1,30 @@
+info:
+  name: features
+  type: folder
+  seq: 5
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # Features — xususiyatlar
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/features` |
+    | **Rol** | `admin`, `superadmin` |
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `groups` | GET | `/features/groups` |
+    | `create` | POST | `/features/create` |
+    | `get all` | GET | `/features/list` |
+    | `get by id` | GET | `/features/detail/{{feature_id}}` |
+    | `update` | PATCH | `/features/update/{{feature_id}}` |
+    | `delete` | DELETE | `/features/delete/{{feature_id}}` |
+    | `status update` | PATCH | `/features/{{feature_id}}/status` |
+    | `sort order` | PATCH | `/features/sort-order` |
+  type: text/markdown

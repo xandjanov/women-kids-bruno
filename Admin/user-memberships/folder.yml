@@ -1,0 +1,32 @@
+info:
+  name: user-memberships
+  type: folder
+  seq: 14
+
+request:
+  auth: inherit
+
+docs:
+  content: |-
+    # UserMemberships — biriktirilgan abonementlar va QR
+
+    | | |
+    |---|---|
+    | **Bazasi** | `{{base_url}}/user-memberships` |
+    | **Rol** | `admin`, `superadmin` |
+
+    `assign` tarifni foydalanuvchiga yoki uning farzandiga biriktiradi va QR token beradi.
+    `check-in (qr)` qabulxonada skanerlanganda tashrifni yechadi.
+
+    ### Endpointlar
+
+    | So'rov | Metod | Yo'l |
+    |---|---|---|
+    | `statuses` | GET | `/user-memberships/statuses` |
+    | `assign` | POST | `/user-memberships/assign` |
+    | `check-in (qr)` | POST | `/user-memberships/check-in` |
+    | `get all` | GET | `/user-memberships/list` |
+    | `get by id` | GET | `/user-memberships/detail/{{user_membership_id}}` |
+    | `cancel` | PATCH | `/user-memberships/cancel/{{user_membership_id}}` |
+    | `delete` | DELETE | `/user-memberships/delete/{{user_membership_id}}` |
+  type: text/markdown

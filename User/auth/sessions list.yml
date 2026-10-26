@@ -1,0 +1,48 @@
+info:
+  name: sessions list
+  type: http
+  seq: 9
+
+http:
+  method: GET
+  url: "{{base_url}}/user/sessions"
+  headers:
+    - name: Accept-Language
+      value: "oz"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 && res.body && res.body.items) {
+          const other = res.body.items.find(s => !s.current);
+          if (other) { bru.setEnvVar("user_session_id", other.id); }
+        }
+
+docs: |-
+  Foydalanuvchi **o'z** qurilmalari ro'yxati — staff'dagi
+  `01-Staff / Sessions List` ning aynan o'xshashi.
+
+  Faqat muddati tugamagan sessiyalar, oxirgi faollik bo'yicha tartiblangan.
+
+  | Maydon | Izoh |
+  |---|---|
+  | `current` | `true` — hozir shu token ishlatilayotgan qurilma |
+  | `device_name` | `X-Device-Name` header'idan (`iPhone 14`, `Chrome / Windows`) |
+  | `platform` | `X-Device-Platform` (`ios`, `android`, `web`) |
+  | `ip`, `user_agent` | kirgan paytdagi ma'lumot |
+  | `last_seen_at` | oxirgi so'rov vaqti (5 daqiqada bir yangilanadi) |
+
+  `current: false` bo'lgan birinchi sessiyaning `id`si `userSessionId`
+  env o'zgaruvchisiga yoziladi — `Session Revoke` shuni ishlatadi.
+
+  Sinab ko'rish uchun: `X-Device-Id` ni boshqacha qilib `Login` ni
+  qayta yuboring — ro'yxatda ikkinchi qurilma paydo bo'ladi.

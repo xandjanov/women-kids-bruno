@@ -1,0 +1,62 @@
+info:
+  name: check-in (qr)
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{base_url}}/user-memberships/check-in"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept-Language
+      value: oz
+  body:
+    type: json
+    data: |-
+      {
+        "qr_code_token": "{{qr_code_token}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Qabulxona/turniket QR kodni skanerlab shu endpointga yuboradi.
+  Staff tokeni kerak — kim skanerlagani `attendance_logs.staff_id` ga yoziladi.
+
+  Server bitta tranzaksiyada:
+
+  1. `remaining_visits` ni 1 taga kamaytiradi
+  2. 0 ga tushsa `status` ni `used_up` qiladi
+  3. `attendance_logs` ga yozuv qo'shadi
+
+  Shartlar: `status = active`, `end_date >= now()`, `remaining_visits > 0`.
+  Uchchalasi bitta `UPDATE ... WHERE` da tekshiriladi, shuning uchun bir
+  vaqtda kelgan ikkita skaner bitta tashrifni ikki marta yechib yubormaydi.
+
+  Muvaffaqiyatli javob:
+
+  ```json
+  {
+    "status": 200,
+    "message": "Tashrif qabul qilindi",
+    "membership": {
+      "user_membership_id": 1, "holder_name": "Sevinch Karimova",
+      "tariff_title": "Bolalar", "visits_left": 3, "days_left": 10,
+      "status": "active", "visited_at": "2026-10-23T18:16:13+05:00"
+    }
+  }
+  ```
+
+  | Xato | Sabab |
+  |---|---|
+  | `404` `qr_code_invalid` | bunday token yo'q |
+  | `400` `membership_expired` | muddati o'tgan |
+  | `400` `no_visits_left` | tashriflar tugagan |
+  | `400` `membership_inactive` | bekor qilingan yoki boshqa sababdan faol emas |

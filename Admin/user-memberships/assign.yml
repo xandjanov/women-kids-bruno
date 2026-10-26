@@ -1,0 +1,72 @@
+info:
+  name: assign
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/user-memberships/assign"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept-Language
+      value: oz
+  body:
+    type: json
+    data: |-
+      {
+        "user_id": {{user_id}},
+        "family_member_id": 2,
+        "membership_id": {{membership_id}},
+        "start_date": "2026-10-24"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 201 && res.body) {
+          if (res.body.id) { bru.setEnvVar("user_membership_id", res.body.id); }
+          if (res.body.qr_code_token) { bru.setEnvVar("qr_code_token", res.body.qr_code_token); }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
+
+docs: |-
+  Admin foydalanuvchiga (yoki uning farzandiga) tarif bo'yicha abonement
+  biriktiradi. Staff tokeni kerak (`admin` yoki `superadmin`).
+
+  | Maydon | Cheklov |
+  |---|---|
+  | `user_id` | **majburiy** — abonement egasining user IDsi |
+  | `family_member_id` | ixtiyoriy; `0` yoki yuborilmasa — abonement **foydalanuvchining o'ziga** |
+  | `membership_id` | **majburiy** — tarif IDsi (`21-Membership / List`) |
+  | `start_date` | ixtiyoriy, `YYYY-MM-DD`; bo'sh bo'lsa **bugun** |
+
+  Server o'zi hisoblaydi:
+
+  | Maydon | Qiymat |
+  |---|---|
+  | `end_date` | `start_date + validity_days` |
+  | `total_visits`, `remaining_visits` | tarifdagi `total_visits` |
+  | `qr_code_token` | 26 belgili tasodifiy token (`crypto/rand`) |
+  | `status` | `active` |
+
+  Javobdagi `id` → `userMembershipId`, `qr_code_token` → `qrCodeToken`
+  env o'zgaruvchilariga yoziladi (`Check-In` shuni ishlatadi).
+
+  | Xato | Sabab |
+  |---|---|
+  | `404` `user_not_found` | bunday user yo'q |
+  | `403` `user_blocked` | user `status: false` |
+  | `404` `membership_not_found` | tarif yo'q |
+  | `400` `membership_not_configured` | tarifda `validity_days` yoki `total_visits` = 0 |
+  | `400` `family_member_not_found` | a'zo yo'q yoki boshqa userniki |
+  | `400` `membership_already_active` | shu egada shu tarif bo'yicha faol abonement bor |
+  | `400` `start_date_invalid` | sana formati noto'g'ri |
